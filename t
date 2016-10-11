@@ -1,0 +1,3 @@
+{responseMessage:S=success,returnCode:M={domain:S=EAS,type:S=S,code:S=success,message:S=success,parameterList:=,externalSystem:=,externalCode:=,externalMessage:=},banAccountNo:S=6236882280000291828,banAccountName:S=.........,statusId:S=FNACT_ACTIVE,availableBalance:S=0,actualBalance:S=0,tradePartyId:S=802011,createDate:S=2016-0927 15\:12\:13.0,freezeAmount:S=0,tranDate:S=20160929,tranTime:S=142440000,backendSeqNo:S=EAM01201609291424405908EAM000000}
+
+{banAccountNo:S=6236882280000291828,commonHead:HM={tranSeqNo:S=EAM01201609291424405908EAM000000,tranTime:S=14240000,sourceSysId:S=EAM,accDate:S=20160929,tranDate:S=20160929,branchId:S=802011,tranCode:S=queryBalanceAccount,globalSeqNo:S=EAM01201609291424405908,tranTellerNo:S=M0001,channel:S=1016,consumerId:S=EAM}}

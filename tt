@@ -1,0 +1,39 @@
+<protocol id="regex" baseProtocol="http">
+    <property>
+        <attribute key="maxSearchCount" value="1" type="Integer"/>
+        <attribute key="unsetLayerBeginFlag" value="false" type="boolean"/>
+        <multiValueAttribute key="requestPattern" type="String" ignoreCase="false">
+            <value hint="name=*|flag=CASE_INSENSITIVE:COMMENTS">
+                <![CDATA[
+                .*?=(?!\{)(?<F1>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F2>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F3>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F4>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F5>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F6>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F7>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F8>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F9>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F10>[a-zA-Z0-9_-\s\\:.]*)
+                ]]>
+            </value>
+        </multiValueAttribute>
+        <multiValueAttribute key="responsePattern" type="String" ignoreCase="false">
+            <value hint="name=*|flag=CASE_INSENSITIVE:COMMENTS">
+                <![CDATA[
+                .*?=(?!\{)(?<F1>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F2>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F3>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F4>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F5>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F6>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F7>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F8>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F9>[a-zA-Z0-9_-\s\\:.]*)
+                .*?=(?!\{)(?<F10>[a-zA-Z0-9_-\s\\:.]*)
+                ]]>
+            </value>
+        </multiValueAttribute>
+    </property>
+    <recordField allItem="true"/>
+</protocol>

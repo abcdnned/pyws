@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taux version="3.0">
+    <file>
+        <group streamId="1">
+            <file>${DCD_PCAP_HOME}/{{pcapname}}.pcap</file>
+        </group>
+    </file>
+    <decode>
+        <property>
+            <recordCode>
+                <field>SrcIp</field>
+                <field>DestIp</field>
+                <field>SrcPort</field>
+                <field>DestPort</field>
+                <!-- <field>Prot</field> -->
+                <field>PktId</field>
+                <field>RRA</field>
+            </recordCode>
+            <mismatchDropPacketEnable>true</mismatchDropPacketEnable>
+        </property>
+        {{group}}
+    </decode>
+</taux>

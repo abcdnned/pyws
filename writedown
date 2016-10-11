@@ -1,0 +1,39 @@
+#Impediment on
+#Impediment off
+jupytre
+numpy
+import numpy as np
+np.array(...)
+    1/arr
+arr[5:8]=12
+arr[data<10]=10
+names=['bob','jack']
+arr[names=='bob']
+
+pandas
+
+copernicus
+
+
+let g:UltiSnipsSnippetDirectories=["C:/Users/tom.yang/snips","C:/Users/tom.yang/snips/netissnips","bundle/vim-snippets/UltiSnips"]
+let g:airnote_path = expand('C:/Users/tom.yang/snips/note')
+let g:pydoc_cmd = "C:/Python27/Lib/pydoc.py"
+
+http://dcd3-pkgsvr.dev.netis.com.cn/berlin/
+
+http://lingotic.dev.netis.com/api/docs/#!/predict_tasks/Predict_Task_create
+
+DP-6414 [解码请求]江阴农商行内联gxp支付平台接入报文解码
+DP-6412 [解码]吉林银行－手机银行
+DP-6409 [解码]中信建投POC统一接入－交易后台
+DP-6464 更新API文档及对应接口测试-/pcap
+DP-6463 处理xdlapi边界情况
+DP-6476 [解码请求]吴江农商行贷记卡系统解码
+DP-6490 [解码请求]邢台银行_网银前置－城商行清算中心
+DP-6493 [解码]台州银行-综合前端
+DP-6450 新增基于银联规范的通用的8583解码器
+DP-6504 [解码请求]江阴农商行核心解码
+    http://172.16.11.55/zh-cn/transd/discovery/1474789711.0129007/
+    http://confluence.dev.netis.com.cn:8090/display/PROT3/JYRCB+CORE
+DP-6519 [解码]河北银行－ATMP
+DP-6548 [解码请求]四川农信解码请求---EPOS解码

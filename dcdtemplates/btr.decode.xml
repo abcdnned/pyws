@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+
+<decode version="2.0">
+    <property>
+        <recordCode>
+            <field>SrcIp</field>
+            <field>DestIp</field>
+            <field>SrcPort</field>
+            <field>DestPort</field>
+            <field>PktId</field>
+            <field>RRA</field>
+        </recordCode>
+        <mismatchDropPacketEnable>true</mismatchDropPacketEnable>
+        <payloadCompleteRequired>true</payloadCompleteRequired>
+    </property>
+
+    <group decodeId="1">
+        <protocol id={{protocol}} baseProtocol="tcp">
+            <recordField allItem="true">
+            </recordField>
+        </protocol>
+    </group>
+</decode>

@@ -1,0 +1,133 @@
+<protocol id="cics" baseProtocol="tcp">
+            <recordField allItem="true">
+            </recordField>
+        </protocol>
+        <protocol id="boc bancs link xdl" baseProtocol="cics">
+            <recordField allItem="true">
+            </recordField>
+        </protocol>
+
+BOC_BANCS_LINK.pcap
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<protocol xmlns="http://www.netis.com.cn/xdl/tag" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:buf="http://www.netis.com.cn/xdl/buf" xmlns:core="http://www.netis.com.cn/xdl/core"
+	xsi:schemaLocation="http://www.netis.com.cn/xdl/tag xdl.decode.xsd 
+              http://www.netis.com.cn/xdl/buf xdl.buf.xsd
+              http://www.netis.com.cn/xdl/core xdl.core.xsd">
+
+	<!-- register -->
+	<register>
+		<name>boc bancs link xdl</name>
+		<desc>XDL decoder of BOC bancs link protocol</desc>
+		<priority>2000</priority>
+		<baseOn>cics</baseOn>
+		<vendor>netis</vendor>
+		<version>1.0.0</version>
+	</register>
+
+	<!-- do not support auto detect -->
+
+	<!-- decode buffer -->
+
+	<buffer>
+		<!-- The buffer must completed. -->
+		<get var="containsNextLayerComplete" target="decodeStatus" property="containsNextLayerComplete" />
+		<if test="${containsNextLayerComplete == false}">
+			<throw exception="ProtocolErrorException" message="The layer must completed." />
+		</if>
+
+		<core:decodeStatus status="LayerBegin" />
+		<if test="${_RRA == 'req'}">
+			<field name="TRANSID">
+				<L>4</L>
+			</field>
+			<field name="TXNCDE">
+				<L>6</L>
+			</field>
+			<field name="ORGIDT" record="false">
+				<L>5</L>
+			</field>
+			<field name="WORKSTATION" record="false">
+				<L>3</L>
+			</field>
+			<field name="TRMIDT" record="false">
+				<L>6</L>
+			</field>
+			<field name="CHANNEL_FLAG">
+				<L>1</L>
+			</field>
+			<field name="PRO_ORGIDT" record="false">
+				<L>5</L>
+			</field>
+			<field name="TELLNO" record="false">
+				<L>7</L>
+			</field>
+			<field name="SUPTEL" record="false">
+				<L>7</L>
+			</field>
+			<field name="FILLER" record="false">
+				<L>7</L>
+			</field>
+			<field name="USRDEF" record="false">
+				<L>47</L>
+			</field>
+			<field name="TOTLEN" cache="true" record="false">
+				<L>2</L>
+				<T>NUMBER</T>
+				<V>SHORT</V>
+			</field>
+			<if test="${_buffer.remaining() &lt; TOTLEN}">
+				<throw exception="ProtocolErrorException" message="Buffer remaining less than expected length." />
+			</if>
+			<else>
+				<core:decodeStatus status="LayerBegin" />
+				<field name="FMH" cache="true" record="false">
+					<L>3</L>
+				</field>
+				<if test="${FMH != 'FMH'}">
+					<throw exception="ProtocolErrorException" message="Response first three chars must be \'FMH\'." />
+				</if>
+				<core:decodeStatus status="LayerBegin" />
+				<field name="ORGIDT" record="false">
+					<L>5</L>
+				</field>
+				<field name="WORKSTATION" record="false">
+					<L>3</L>
+				</field>
+				<field name="TRMIDT" record="false">
+					<L>6</L>
+				</field>
+				<field name="DEVTYP">
+					<L>1</L>
+					<V>NUMBER</V>
+				</field>
+				<field name="MSGFLG">
+					<L>1</L>
+				</field>
+				<field name="APCODE">
+					<L>2</L>
+				</field>
+				<field name="MSGCDE">
+					<L>4</L>
+				</field>
+				<field name="STATUS">
+					<L>2</L>
+					<T>NUMBER</T>
+					<V>SHORT</V>
+				</field>
+				<field name="MSGLEN" cache="true" record="false">
+					<L>2</L>
+					<T>NUMBER</T>
+					<V>SHORT</V>
+				</field>
+				<if test="${_buffer.remaining() &lt; MSGLEN}">
+					<throw exception="ProtocolErrorException" message="Buffer remaining less than expected length." />
+				</if>
+			</else>
+			<core:decodeStatus status="LayerBegin" />
+		</if>
+	</buffer>
+</protocol> 
+
