@@ -34,6 +34,9 @@ def findStartEnd(lines,start,end):
             e=i
     return (s,e)
 
+dcdpath='d:\\gitrepo\\dcd3.4\\dcd-parser'
+testpath='src\\test\\java\\cn\\com\\netis\dcd\\parser\\regression\\bank'
+
 def main():
     if len(sys.argv)<4:
         print 'pleaes input parameters [dirname on desktop] [the test dir under pervious dir] [surfixname like "individual" "commual"]'
@@ -42,7 +45,11 @@ def main():
     tdir=sys.argv[2]
     surfix=sys.argv[3]
     root=join(ws,dtdir,tdir)
+    if dtdir == 'src' :
+        root = join(dcdpath,testpath,tdir)
+    print root
     f=findSurfixFile(root,'Test.java')
+    print f
     src=open(join(root,f))
     content=src.readlines()
     src.close()
@@ -86,7 +93,7 @@ def main():
         f.write(gt.render(group=group,pcapname=pcapname))
 
     #copy expected floder
-    epecdir=join(ws,dtdir,tdir,'expected')
+    epecdir=join(root,'expected')
     copytree(epecdir,join(testdir,np,'expected'))
 
 if __name__ == "__main__":

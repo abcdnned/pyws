@@ -8,6 +8,7 @@ object TouchIgnore extends App {
         out.println("*~")
         out.println("*.swp")
         out.println(".*")
+        out.println("target")
         out.flush()
         out.close()
         println("touch ignore success")

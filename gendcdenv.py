@@ -5,21 +5,21 @@ import os
 
 #set work directory below
 tpath='c:\\pyws\\dcdtemplates'
-dcdpath='d:\\gitrepo\\dcd\\dcd-parser'
+dcdpath='d:\\gitrepo\\dcd3.4\\dcd-parser'
 testpath='src\\test\\java\\cn\\com\\netis\dcd\\parser\\regression\\bank'
 srcpath='src\\main\\java\\cn\\com\\netis\dcd\\parser\\decoder\\bank'
 
 #set parameters below
-bankname='scrcu'
-pkgname='epos'
-protocol='\"scrcu epos\"'
-testname='ScrcuEposTest'
-pcapname="SCRCU_EPOS.pcap"
-decoder='EposDecoder'
+bankname='bohb'
+pkgname='front'
+protocol='\"wjrcb pos\"'
+testname='BohbFrontTest'
+pcapname="BOHB_FRONT.pcap"
+decoder='PosDecoder'
 TEST_FLODER=join(dcdpath,testpath,bankname,pkgname)
 autoreg=True
 regtype='bank'
-testonly=False
+testonly=True
 mngfloder=join(dcdpath,srcpath,bankname)
 
 env=Environment(loader=FileSystemLoader(tpath))

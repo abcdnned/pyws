@@ -14,6 +14,8 @@ pandas
 
 copernicus
 
+berlin passward
+4J2cS5JpUimTat3C
 
 let g:UltiSnipsSnippetDirectories=["C:/Users/tom.yang/snips","C:/Users/tom.yang/snips/netissnips","bundle/vim-snippets/UltiSnips"]
 let g:airnote_path = expand('C:/Users/tom.yang/snips/note')
@@ -37,3 +39,16 @@ DP-6504 [解码请求]江阴农商行核心解码
     http://confluence.dev.netis.com.cn:8090/display/PROT3/JYRCB+CORE
 DP-6519 [解码]河北银行－ATMP
 DP-6548 [解码请求]四川农信解码请求---EPOS解码
+DP-6423 Berlin分支切换机制改进
+DP-6593 Berlin 分析package树时，如果节点没有discription，会中断分析
+DP-6594 [解码请求]吴江农商行POS到卡前置解码请求
+DP-6603 [解码优化]四川农信－统一支付AFA
+DP-6618 [解码申请]随行付-银联交易
+DP-6625 [解码]青岛银行新核心
+DP-6630 [解码]河北银行－二代大小额、超级网银到大前置
+DP-6626 [解码]广东华兴银行-理财系统APP解码
+DP-6390 增加一个检测 layer end 的解码器
+DP-6691 [解码申请]大连农商行理财
+
+The unite or unite.vim plug-in can search and display information from arbitrary sources like files, buffers, recently used files or registers. You can run several pre-defined actions on a target displayed in the unite window.
+The difference between unite and similar plug-ins like fuzzyfinder, ctrl-p or ku is that unite provides an integration interface for several sources and you can create new interfaces using unite.
