@@ -1,5 +1,6 @@
 #Impediment on
 #Impediment off
+
 jupytre
 numpy
 import numpy as np
@@ -10,12 +11,25 @@ arr[data<10]=10
 names=['bob','jack']
 arr[names=='bob']
 
-pandas
 
 copernicus
 
 berlin passward
 4J2cS5JpUimTat3C
+
+source linenumber in dcd 46w
+source linenumber in dp  42w
+
+nexus
+
+vocation record, total : 9
+3-1
+4-.5
+5-2
+6-3
+9-.5
+11-2
+
 
 let g:UltiSnipsSnippetDirectories=["C:/Users/tom.yang/snips","C:/Users/tom.yang/snips/netissnips","bundle/vim-snippets/UltiSnips"]
 let g:airnote_path = expand('C:/Users/tom.yang/snips/note')
@@ -49,6 +63,17 @@ DP-6630 [解码]河北银行－二代大小额、超级网银到大前置
 DP-6626 [解码]广东华兴银行-理财系统APP解码
 DP-6390 增加一个检测 layer end 的解码器
 DP-6691 [解码申请]大连农商行理财
+DP-6726 设计解码器表主要结构
+DP-6713 修改后台数据库结构，维护解码器信息
+DP-6800 [解码请求]郑州银行综合前置解码
+DP-6825 [解码请求]江阴农商行网银其他GAPS报文解码
 
 The unite or unite.vim plug-in can search and display information from arbitrary sources like files, buffers, recently used files or registers. You can run several pre-defined actions on a target displayed in the unite window.
 The difference between unite and similar plug-ins like fuzzyfinder, ctrl-p or ku is that unite provides an integration interface for several sources and you can create new interfaces using unite.
+
+smart decoder and bpc server
+172.16.11.55
+
+berlin release service
+dcd3-pkgsvr.dev.netis.com.cn
+172.16.12.120

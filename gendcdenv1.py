@@ -4,20 +4,20 @@ import os.path
 import os
 
 #set work directory below
-type = 'bank'
+type = 'base'
 
-tpath='c:\\pyws\\dcdtemplates'
-dcdpath='d:\\gitrepo\\dcd\\dcd-parser'
-testpath='src\\test\\java\\cn\\com\\netis\dcd\\parser\\regression\\' + type
-srcpath='src\\main\\java\\cn\\com\\netis\dcd\\parser\\decoder\\' + type
+tpath='/home/tom/gitrepo/pyws/dcdtemplates'
+dcdpath='/home/tom/gitrepo/dcd/dcd-parser'
+testpath='src/test/java/cn/com/netis/dcd/parser/regression/' + type
+srcpath='src/main/java/cn/com/netis/dcd/parser/decoder/' + type
 
-custname = "bohb"
-subname = 'front'
-protocol='GHB APP'
-testname='BohbFrontTest'
-pcapname="BOHB_FRONT.pcap"
+custname = "removebytes"
+subname = 'normal'
+protocol='remove bytes'
+testname='RemoveBytesTest'
+pcapname="CS_TPPAY.pcap"
 decoder='CupsDecoder'
-ioc = "individual"
+ioc = "layer"
 TEST_FLODER=join(dcdpath,testpath,ioc,custname,subname)
 #TEST_FLODER=join(dcdpath,testpath,custname,subname)
 autoreg=True

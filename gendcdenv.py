@@ -4,22 +4,22 @@ import os.path
 import os
 
 #set work directory below
-tpath='c:\\pyws\\dcdtemplates'
-dcdpath='d:\\gitrepo\\dcd3.4\\dcd-parser'
-testpath='src\\test\\java\\cn\\com\\netis\dcd\\parser\\regression\\bank'
-srcpath='src\\main\\java\\cn\\com\\netis\dcd\\parser\\decoder\\bank'
+tpath='/home/tom/gitrepo/pyws/dcdtemplates'
+dcdpath='/home/tom/gitrepo/dcd/dcd-parser'
+testpath='src/test/java/cn/com/netis/dcd/parser/regression/bank'
+srcpath='src/main/java/cn/com/netis/dcd/parser/decoder/bank'
 
 #set parameters below
-bankname='bohb'
-pkgname='front'
-protocol='\"wjrcb pos\"'
-testname='BohbFrontTest'
-pcapname="BOHB_FRONT.pcap"
-decoder='PosDecoder'
+bankname='tccb'
+pkgname='atmp'
+protocol='\"tccb atmp\"'
+testname='TccbAtmpTest'
+pcapname="TCCB_ATMP.pcap"
+decoder='AtmpDecoder'
 TEST_FLODER=join(dcdpath,testpath,bankname,pkgname)
 autoreg=True
 regtype='bank'
-testonly=True
+testonly=False
 mngfloder=join(dcdpath,srcpath,bankname)
 
 env=Environment(loader=FileSystemLoader(tpath))
