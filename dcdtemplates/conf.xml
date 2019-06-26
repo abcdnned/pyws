@@ -14,6 +14,7 @@
 				<field>DestPort</field>
 				<field>PktId</field>
 				<field>RRA</field>
+				<field>FlowId</field>
 			</recordCode>
 			<mismatchDropPacketEnable>true</mismatchDropPacketEnable>
 		</property>
@@ -21,9 +22,7 @@
 			<property>
 				<payloadCompleteRequired>true</payloadCompleteRequired>
 			</property>
-            <protocol id="{{protocol}}" baseProtocol="tcp">
-				<recordField allItem="true" />
-			</protocol>
+            {{protocols}}
 		</group>
 	</decode>
 </taux>

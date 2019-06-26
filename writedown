@@ -1,19 +1,3 @@
-#Impediment on
-#Impediment off
-
-jupytre
-numpy
-import numpy as np
-np.array(...)
-    1/arr
-arr[5:8]=12
-arr[data<10]=10
-names=['bob','jack']
-arr[names=='bob']
-
-
-copernicus
-
 berlin passward
 4J2cS5JpUimTat3C
 
@@ -21,55 +5,18 @@ source linenumber in dcd 46w
 source linenumber in dp  42w
 
 nexus
-
-vocation record, total : 9
-3-1
-4-.5
-5-2
-6-3
-9-.5
-11-2
+http://172.16.11.244:8081/nexus/#welcome
+admin
+3YulYLYS
 
 
 let g:UltiSnipsSnippetDirectories=["C:/Users/tom.yang/snips","C:/Users/tom.yang/snips/netissnips","bundle/vim-snippets/UltiSnips"]
 let g:airnote_path = expand('C:/Users/tom.yang/snips/note')
 let g:pydoc_cmd = "C:/Python27/Lib/pydoc.py"
 
-http://dcd3-pkgsvr.dev.netis.com.cn/berlin/
 
 http://lingotic.dev.netis.com/api/docs/#!/predict_tasks/Predict_Task_create
 
-DP-6414 [解码请求]江阴农商行内联gxp支付平台接入报文解码
-DP-6412 [解码]吉林银行－手机银行
-DP-6409 [解码]中信建投POC统一接入－交易后台
-DP-6464 更新API文档及对应接口测试-/pcap
-DP-6463 处理xdlapi边界情况
-DP-6476 [解码请求]吴江农商行贷记卡系统解码
-DP-6490 [解码请求]邢台银行_网银前置－城商行清算中心
-DP-6493 [解码]台州银行-综合前端
-DP-6450 新增基于银联规范的通用的8583解码器
-DP-6504 [解码请求]江阴农商行核心解码
-    http://172.16.11.55/zh-cn/transd/discovery/1474789711.0129007/
-    http://confluence.dev.netis.com.cn:8090/display/PROT3/JYRCB+CORE
-DP-6519 [解码]河北银行－ATMP
-DP-6548 [解码请求]四川农信解码请求---EPOS解码
-DP-6423 Berlin分支切换机制改进
-DP-6593 Berlin 分析package树时，如果节点没有discription，会中断分析
-DP-6594 [解码请求]吴江农商行POS到卡前置解码请求
-DP-6603 [解码优化]四川农信－统一支付AFA
-DP-6618 [解码申请]随行付-银联交易
-DP-6625 [解码]青岛银行新核心
-DP-6630 [解码]河北银行－二代大小额、超级网银到大前置
-DP-6626 [解码]广东华兴银行-理财系统APP解码
-DP-6390 增加一个检测 layer end 的解码器
-DP-6691 [解码申请]大连农商行理财
-DP-6726 设计解码器表主要结构
-DP-6713 修改后台数据库结构，维护解码器信息
-DP-6800 [解码请求]郑州银行综合前置解码
-DP-6825 [解码请求]江阴农商行网银其他GAPS报文解码
-
-The unite or unite.vim plug-in can search and display information from arbitrary sources like files, buffers, recently used files or registers. You can run several pre-defined actions on a target displayed in the unite window.
-The difference between unite and similar plug-ins like fuzzyfinder, ctrl-p or ku is that unite provides an integration interface for several sources and you can create new interfaces using unite.
 
 smart decoder and bpc server
 172.16.11.55
@@ -77,3 +24,325 @@ smart decoder and bpc server
 berlin release service
 dcd3-pkgsvr.dev.netis.com.cn
 172.16.12.120
+
+DP-TEST-MACHINE
+10.1.1.21
+
+netid-rd wifi
+8!5#RGn0H2#Kd2NU
+
+berlin: 172.16.12.120
+root
+4J2cS5JpUimTat3C
+
+java -agentlib:dpenigmaI  -jar dp-engine.jar -c ../config/default/ -m batch -i file -o btr
+java -agentlib:dpenigmaI  -jar dp-engine.jar -c ../config/default/ -m runtime -i monitor -o btr
+
+java -jar D:\tmp\release-netis-shanghai-replay-1.1.0-local-20140326110234\bin\shanghai-replay.jar -i file=D:\tmp\release-netis-shanghai-replay-1.1.0-local-20140326110234\bin\rhsfrz_20161019100018028420.pcap -o target=file://D:\tmp\release-netis-shanghai-replay-1.1.0-local-20140326110234\bin\rhsfrz_largeSize.pcap,fileSpan=31536000 -m nowait -L 1000
+
+MarkovNetwork
+GraphicalModels
+
+linux algorithm dsl
+java c c++ scala R js python sql webframework json/xml RestFul clojure
+spring maven jvm jenkins mongoDB
+docker ml git database
+tcp/ip rsa/ssl gzip delfat base64
+scrum tmux vim
+
+
+devrobot
+crossflow8080@
+
+https://essen.netisdev.com
+
+10.1.5.56 essen
+10.1.1.39 konisgerb
+
+coursera yzj_1219 gmail account
+
+qing 172.16.11.222
+
+-dontobfuscate
+
+ 172.16.13.100
+ smartdecoder
+
+https://netis.cdpyun.com/
+13795306035
+bkKaqE
+bpc command line:
+bpc ttsetup
+bpc restart all
+
+bpc uninstall
+pypy
+mongodb
+redis
+memca
+
+/opt/bpc/var/probe/logs/service.log
+/opt/bpc/var/probe/logs/stderr.log
+/opt/bpc/var/probe/logs/web-access.log
+
+lic
+admin
+u2hlu590
+
+falcon
+
+tshark -r nvTrace/CL.pcap -w QUICK_DROP_ACK.pcap -Y "tcp.stream eq 1"
+
+kafka path /opt/kafka-.....
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+分机号6534
+
+mergecap -w output.pcap intput1.pcap [intput2.pcap ....]
+
+git log -1 --name-status | grep conf.xml | grep "^[MA]" | awk '{print $2}' | xargs sed -i '20,$ s/property/prot:property/g;s/attribute/prot:attribute/g;s/recordField/prot:recordField/g;s/protocol/prot:protocol/g;s/<decode>/<decode xmlns:prot="http:\/\/www.netis.com\/schema\/decode\/protocol" xmlns:ef="http:\/\/www.netis.com\/schema\/decode\/extendField" xmlns:p="http:\/\/www.netis.com\/schema\/decode\/property" xmlns:net="http:\/\/www.netis.com\/schema\/decode\/network">/;s/payloadCompleteRequired/p:payloadCompleteRequired/g'
+
+nmcli device show enp0s25 | grep IP4.DNS
+
+ls -dt /mnt/md0/capture/DCN/*.pcap | tail -n "$del" | xargs rm
+
+The Model-View-Controller (MVC) software design pattern is a method for separating concerns within a software application. In principal, the application logic, or controller, is separated from the technology used to display information to the user, or the view layer. The model is a communications vehicle between the controller and view layers.
+Within an application, the view layer may use one or more different technologies to render the view. Spring web-based applications support a variety of view options, often referred to as view templates. These technologies are described as "templates" because they provide a markup language to expose model attributes within the view during server-side rendering.
+
+export MAVEN_OPTS="-XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintFlagsFinal -Xloggc:/home/tom/tmp/gc.log"
+
+-Xloggc:/path/to/gc.log
+Path where the GC logs are written
+-XX:+UseGCLogFileRotation
+Enable GC log file rotation
+-XX:NumberOfGCLogFiles=<value>
+Number of rotated GC logs files to retain
+-XX:GCLogFileSize=<size>
+Size of each GC logs file to initiate rotation
+-XX:+PrintGCDetails
+Detailed GC log
+-XX:+PrintGCDateStamps
+Actual date and timestamp of the collection
+-XX:+PrintGCApplicationStoppedTime
+Amount of time the application stopped during GC
+-XX:+PrintGCApplicationConcurrentTime
+Amount of time the application ran between GCs
+-XX:-PrintCommandLineFlags
+Prints all the command line flags in the GC log
+
+tunning metaspace
+The log message tells that GC was caused by Metaspace allocation failure. Metaspaces hold class metadata. They have appeared in Java 8 to replace PermGen.
+
+Here are some options to tune Metaspaces.
+You may want to set one or several of the following options:
+
+-XX:MetaspaceSize=100M Sets the size of the allocated class metadata space that will trigger a garbage collection the first time it is exceeded;
+
+-XX:InitialBootClassLoaderMetaspaceSize=32M to increase the boot class loader Metaspace;
+
+-XX:MinMetaspaceFreeRatio=50 to make Metaspaces grow more agressively;
+
+-XX:MaxMetaspaceFreeRatio=80 to reduce the chance of Metaspaces shrinking;
+
+-XX:MinMetaspaceExpansion=4M the minumum size by which a Metaspace is exanded;
+
+-XX:MaxMetaspaceExpansion=16M the maximum size to expand a Metaspace by without Full GC
+
+cmd &> /dev/null &
+
+javap -c
+
+jar -xf jarfile classfile
+jar uf jarfile classfile
+
+Press your prefix (e.g. Ctrl+A or B, which is the default) and then : and type kill-session, then hit Enter. This will, as the name of the command suggests, kill the session.
+
+xargs -I {} sh w.sh {} 1.txt < ff.txt
+find -name "*_0.ntr" | awk -F"/" '{print $3}' | awk -F"." '{print substr($1, 0, length($1))"1.ntr"}' | xargs -I {} find /home/tom/gitrepo/dp/ -name {} | grep -v TCP_SLICED
+
+/opt/bpc/etc/probe/rtfwd
+https://hooli.netisdev.com/zh-CN/
+
+Administrator
+jaydevcontrol
+
+splunk account
+abcdnned
+Yzj_1219
+
+172.16.103.98
+
+gcc -fpic -c test.c
+
+gcc -shared -o libtest.so test.o
+
+readelf -a -W elffile
+readelf -d  /path/to/library.so
+
+\? match preceding character 0 or 1 times (\= can also be used)
+/abc\? match 'ab' or 'abc' but not 'abcc'
+\{-} non-greedy match preceding character 0 or more times
+
+ldconfig -p
+
+ln -sf /usr/lib64/libcrypto.so.10 /usr/lib64/libcrypto.so.6
+
+learning a tool
+concep feature step-by-step
+
+docker install & uninstall
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get purge docker-ce
+
+docker change overlay2
+docker info | grep "Storage Driver"
+sudo systemctl stop docker
+sudo cp -au /var/lib/docker /var/lib/docker.bk
+echo '{ "storage-driver": "overlay2" }' | sudo tee /etc/docker/daemon.json
+sudo systemctl start docker
+
+splunk docker
+docker pull splunk/splunk:latest
+docker run -d -p 8000:8000 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUNK_PASSWORD=<password>' splunk/splunk:latest
+docker ps -a -f id=<container_id>
+localhost:8000
+docker run -it splunk/splunk help
+
+git submodule remove
+git rm --cached dp-packet/src/main/proto
+git submodule init
+git submodule update
+git protobuf:compile
+
+git submodule update == pull
+git submodule sync == if remote change repo url, this will work
+
+sudo dpkg -i xxx.deb
+sudo apt-get -f install 
+
+git add -u
+git ls-files --modified | xargs git add
+
+多文件替换 find ./ -type f -name "*.java" -exec sed -i 's/ByteArrayAllocator/ArrayAllocator/g' {} \;
+
+在目录下查找制定字符串并且替换
+grep -rl oldstr path | xargs sed -i 's/oldstr/newstr/g'
+
+
+dpruntime配置目录路径
+/opt/bpc/var/probe/tasks/runtime/procs/dp/config/
+
+dp更改配置方式，通过4580修改模板以后，在runtime页面更新服务配置，生成的配置在bpcdpconf目录下，然后会拷贝到runtime配置路径。实际跑的是runtime路径下的配置
+vim /opt/bpc/var/probe/tasks/runtime/procs/dp/profile
+
+pktm log
+tail -fn30 /opt/bpc/var/probe/tasks/nics/procs/pktm/log/stderr.log
+
+pktminer运行包替换路径
+/opt/bpc/probe/comp/pktm/pktminer
+
+cat /opt/bpc/var/probe/tasks/nics/procs/pktm/config/pdu.export.xml | grep tcp
+./pmsg.py run start 2 --operand=btr
+/opt/bpc/probe/comp/pktm/pktminer/tools/pmsg.py reset 2 --operand=pdu
+/opt/bpc/probe/comp/pktm/pktminer/bin/pktminer --c /opt/bpc/var/probe/tasks/nics/procs/pktm/config
+
+license system admin account
+admin u2hlu590
+
+在https://munich.netisdev.com/munich/bpc/version页面以管理员方式登录后，进入DP管理页面，添加一个新版本，使用mdsum 和sha1sum获取dp信息后填入。
+在BPC版本管理页面添加一个版本。
+在BPC测试license创建页面创建新的license，创建是记得切换回自己的帐号
+
+mvn clean install -Pdist,后进入dp-engine-app/target/下将带有-all后缀的包替换到dpbin目录下覆盖dp-engine.jar。进入probe后台管理页面，dp开启调试的方法，在dp配置中将开启调试模式的选项打上钩，然后更新配置，然后到runtime服务中更新一下配置。
+DP替换目录
+/opt/bpc/probe/comp/dp/dcd/bin
+
+<nvEnableRetransmissionFilter>true</nvEnableRetransmissionFilter>
+
+http://zabbix.netisdev.com/zabbix/host_screen.php?hostid=10198
+用户名Admin，密码zabbix
+
+申请正式lic的方法，在bin下运行digest.sh然后在慕尼黑上申请正式lic
+
+dp运行目录
+/opt/bpc/probe/comp/dp/dcd/bin/dp-engine.jar
+
+pktminer低CPU负载情况下，设置改成1
+
+晨会机器
+administrator
+jaydevcontrol
+
+查看运行在哪个核上
+taskset -p 2726 
+绑定cpu
+taskset -pc 1 2726
+
+pktgen发包
+/opt/rockett/replay/dpdk/pktgen-dpdk-pktgen-3.0.00
+/opt/rockett/replay/dpdk/pktgen-dpdk-pktgen-3.0.00/app/app/x86_64-native-linuxapp-gcc/pktgen  --file-prefix PORT7 -w 0000:07:00.3 -c 0xffff -n 3 --proc-type auto --socket-mem 20000  -- -g 127.0.0.1:22027 -P -m  "[13].0" -s "0:[pcap filename]" -f /tmp/node-perf-test1p2p1.pkt
+
+I think transactions belong on the Service layer. It's the one that knows about units of work and use cases. It's the right answer if you have several DAOs injected into a Service that need to work together in a single transaction.
+
+
+1.1. Problems in microservices architecture
+
+Mostly server side load balancing is a manual effort and we need to add/remove instances manually to the load balancer to work. So ideally we are loosing the today’s on demand scalability to auto-discover and configure when any new instances will be spinned of.
+
+Another problem is to have a fail-over policy to provide the client a seamless experience. Finally we need a separate server to host the load balancer instance which has the impact on cost and maintenance.
+
+@Configuration
+@EnableJpaRepositories
+@EnableTransactionManagement
+@RestController
+@LoadBalanced
+@EnableDiscoveryClient
+@SpringBootApplication
+@RibbonClient(name = "server", configuration = RibbonConfiguration.class)
+
+利用Eureka做服务发现的方法：
+初始环境，一个EurekaServer和若干台EurekaClient。
+EurekaServer和EurekaClient的实现方法是分别加上@EurekaServer和@EurekaClient注释在Application上。同时还有@SpringBootApplication
+然后在main方法中调用SpringBootApplication.run方法。
+
+创建一个Application上加上@RibbonClient注释。注释属性可以制定一个配置类，配置类可以返回IRule和IPing两个Bean用于配置负载均衡行为。
+创建一个@RestController实现RestFul服务端逻辑。
+方法是在类上注释@RestController在方法上注释@RequestMapping
+
+构建RestTemplate Bean，同时加上@LoadBalance方法。使用RestTemplate的getForObject方法来调用其他restapi实现负载均衡
+
+在application.properties中的一些重要配置项
+
+eureka.client.serviceUrl.defaultZone: http://${registry.host:localhost}:${server.port}/eureka/ eureka客户端和服务端的此项配置应该一致
+server.ribbon.eureka.enabled=true 是否通过eureka实现负载均很
+#server.ribbon.listOfServers=localhost:9090,localhost:9091,localhost:9092 hardCode管理的服务端口号，eureka不启用时通过此配置。
+
+ubuntu安装企业微信
+git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git
+./install.sh
+wget http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.weixin.work/deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb
+udo dpkg -i deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb
+
+bpc fileconvert -i 20190625103500.0.ttr.kpack.sz -o 20190625103500.0.ttr.json
+
+//unicode专程中文
+StringEscapeUtils.unescapeJava
+//中文转unicode
+StringEscapeUtils.escapeJava
+
+tcp中拥塞控制和流量控制是不同的两个概念，拥塞控制使用cwind窗口来控制发送速度，使用门限来限制最大cwind
+拥塞控制有两个阶段，慢启动和拥塞避免
+在慢启动阶段cwind指数增大，达到门限以后开始加法增大，也就是拥塞避免阶段。增大的前提条件是有RRT（即有报文被确认）
+根据重传来检测和报文ack情况来检测拥塞，当拥塞发生时，门限减半，cwind回到1,进入慢启动状态。
+发送窗口等于cwind和rwind中的最小值，rwind由接收方决定，是点到点的流量控制。
+
+流量控制使用rwind，接受放定下一个窗口大小
+拥塞控制使用cwind+门限两个变量控制。有慢启动和拥塞避免两个阶段，慢启动cwind指数增加，用赛避免是cwind加法增加，分界线就是门限。
+当检测到拥塞后会将门限减半，cwind变为1,重新进入慢启动状态。
+当收到快速重传指示后，门限减半，cwind变为门限值，进入拥塞避免状态

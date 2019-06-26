@@ -10,16 +10,16 @@ testpath='src/test/java/cn/com/netis/dcd/parser/regression/bank'
 srcpath='src/main/java/cn/com/netis/dcd/parser/decoder/bank'
 
 #set parameters below
-bankname='tccb'
-pkgname='atmp'
-protocol='\"tccb atmp\"'
-testname='TccbAtmpTest'
-pcapname="TCCB_ATMP.pcap"
-decoder='AtmpDecoder'
+bankname='hxb'
+pkgname='pos'
+protocol='\"hxb pos\"'
+testname='HxbPosTest'
+pcapname="HXB_POX.pcap"
+decoder='SmsDecoder'
 TEST_FLODER=join(dcdpath,testpath,bankname,pkgname)
-autoreg=True
+autoreg=False
 regtype='bank'
-testonly=False
+testonly=True
 mngfloder=join(dcdpath,srcpath,bankname)
 
 env=Environment(loader=FileSystemLoader(tpath))

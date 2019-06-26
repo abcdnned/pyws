@@ -1,4 +1,4 @@
-package cn.com.netis.dcd.parser.regression.{{type}}.{{ioc}}.{{custname}}.{{subname}};
+package cn.com.netis.dcd.parser.regression.{{location}};
 
 import java.io.IOException;
 
