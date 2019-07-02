@@ -346,3 +346,51 @@ tcp中拥塞控制和流量控制是不同的两个概念，拥塞控制使用cw
 拥塞控制使用cwind+门限两个变量控制。有慢启动和拥塞避免两个阶段，慢启动cwind指数增加，用赛避免是cwind加法增加，分界线就是门限。
 当检测到拥塞后会将门限减半，cwind变为1,重新进入慢启动状态。
 当收到快速重传指示后，门限减半，cwind变为门限值，进入拥塞避免状态
+
+HTTPS的服务器公钥是服务器主动传送给客户端的。
+HTTPS需要买证书
+HTTPS的握手过程更加的耗时
+
+B-Tree索引原理
+B-Tree根据搜索二叉树进化而来，为了降低高度而增加每层节点的个数。B树每个节点对应外存的一个页。外存根据局部性原理和顺序读外存效率高的原因，会进行预读，预读的大小就是页的整数倍。
+B树和B+树的区别在于一个在内层节点会存储data而B+树只会在叶子几点上存储data。
+B+树查询效果稳定，因为每次查询路径都是从根节点到达一个叶子节点。由于不用存data，每个节点存的key可以更多，出度也就更大。
+B+树叶子节点上会有顺序指针方便范围查询。
+索引的实现方式跟数据库引擎有关
+InnoDB引擎使用聚集索引，索引文件本身就是数据文件。主键索引保存完整记录，辅助索引保存的是主键引用，所以每次差辅助索引需要两次查询。
+MyISAM引擎使用非聚集索引，索引文件保存指向数据文件的地址。主键索引和辅助索引结构一致。
+正对InnoDB的一些优化
+主键选择最好单调，单调的主键在插入数据时直接追加好维护，避免移动操作，同时能避免外存碎片。每个节点有一个负载因子，控制何时增加一个新节点, 如果主键耗无规律就容易产生碎片。
+而且长度要有所控制, 因为所有的辅助索引都存的是主键的引用。
+索引优化通用技术
+前缀法，使用前缀来代替完整的主键索引，减少索引长度，同时又能保障比较好的选择性。
+索引价值评价指标 记住维护索引是需要成本的
+选择性 数据量大小 
+InnoDB的索引优化策略
+
+vim-hide-show/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-hide-show.git
+SpringBoot-vue/.git/config:7:	url = https://abcdnned:yzj_184@github.com/boylegu/SpringBoot-vue.git
+meeting/.git/config:7:	url = https://github.com/abcdnned/meeting.git
+dcdhelper/.git/config:7:	url = https://github.com/abcdnned/dcdhelper.git
+energy/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/energy.git
+funker/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/funker.git
+vim-java-manager/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-java-manager.git
+maven-compiler.vim/.git/config:7:	url = https://github.com/abcdnned/maven-compiler.vim.git
+baidukeys/.git/config:7:	url = https://github.com/abcdnned/cipherexample.git
+vim-java-finder/.git/config:7:	url = https://github.com/abcdnned/vim-java-finder.git
+pyws/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/pyws.git
+scalatool/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/scalatool.git
+jcommenter.vim/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/jcommenter.vim.git
+tomsnips/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/tomsnips.git
+vim-playchips/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-playchips.git
+fdg/.git/config:7:	url = https://github.com/abcdnned/fdg.git
+vim-string-search/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-string-search.git
+script/.git/config:7:	url = https://github.com/abcdnned/script.git
+linux-cheatsheet/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/linux-cheatsheet.git
+vimim/.git/config:7:	url = https://github.com/abcdnned/vimim.git
+esclient/.git/config:7:	url = https://github.com/abcdnned/esclient.git
+deskcleaner/.git/config:7:	url = https://github.com/abcdnned/deskcleaner.git
+weatherhelper/.git/config:7:	url = https://github.com/abcdnned/weatherhelper.git
+vim-java-extractor/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-java-extractor.git
+vim-random/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-random.git
+vim-java-commenter/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-java-commenter.git
