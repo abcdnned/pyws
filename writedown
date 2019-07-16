@@ -394,3 +394,12 @@ weatherhelper/.git/config:7:	url = https://github.com/abcdnned/weatherhelper.git
 vim-java-extractor/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-java-extractor.git
 vim-random/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-random.git
 vim-java-commenter/.git/config:7:	url = https://abcdnned:yzj_184@github.com/abcdnned/vim-java-commenter.git
+
+How to wipe a Linux laptop
+If you've got a Linux-based machine, wiping any of the hard drives - internal or external - is a slightly fiddly process that involves using the command line.
+
+Open up a command line terminal and enter 'sudo fdisk -l'. This will list all the storage drives currently connected to your machine. Find the drive you want to wipe, and note the drive's device path.
+
+Next, run this command - 'sudo dd if=/dev/zero of=/dev/sdb bs=1M' - via the terminal, making sure to substitute '/dev/sdb/' with the target drive's correct device path. This method is known as 'zeroing', and wipes the drive by overwriting every byte of information with zeroes.
+
+There is some debate as to whether or not this is more secure than overwriting the drive with random bits of information, but it's usually quicker and is perfectly sufficient for protecting your data from the average buyer.

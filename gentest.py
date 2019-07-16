@@ -19,15 +19,15 @@ srcpath='src/main/java/cn/com/netis/dcd/parser/decoder/' + type
 refpath='/home/tom/dcdreq'
 
 #settings
-pcapname="SJB_FRONT.pcap"
+pcapname="CCCB_B2B.pcap"
 protoname='bank/cgb/CGB PAY APP'
 uploadproto=False
 uploadpcap=False
 addnewcase=False
 casename="credit"
-custname = "sjb"
-subname = 'front'
-testname ='SjbFrontTest'
+custname = "cccb"
+subname = 'b2b'
+testname ='CccbB2bTest'
 ioc = "individual"
 TEST_FLODER=join(dcdpath,testpath,ioc,custname,subname)
 #TEST_FLODER=join(dcdpath,testpath,ioc,"supplier",custname,subname)
