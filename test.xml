@@ -1,0 +1,11 @@
+<protocol id="wrap length" baseProtocol="tcp">
+    <property>
+        <attribute key="fieldSize" value="8"/>
+        <attribute key="fieldEncoding" value="ascii"/>
+    </property>
+    <recordField allItem="true">
+    </recordField>
+</protocol>
+<protocol id="xml" baseProtocol="wrap length">
+    <recordField allItem="true" template="xpath" />
+</protocol>

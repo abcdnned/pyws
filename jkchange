@@ -1,0 +1,11 @@
+docker-registry.dev.netis.com.cn:5000/jenkins/java_pcap_dcd --> docker-registry.dev.netis.com.cn:5000/jenkins/java_base
+#!/bin/bash
+#echo "start copy license..."
+#cp -f /license/dp3/*.lic.* dcd-parser/etc/auth
+
+echo "start update dcd pcaps..."
+cd $DCD_PCAP_HOME
+git pull
+
+clean install -Dmaven.test.skip=true
+test -Pregression -U

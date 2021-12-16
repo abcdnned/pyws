@@ -1,0 +1,4 @@
+<head></head>
+<body>
+<image src="abcdnned" name="anything"></image>
+</body>

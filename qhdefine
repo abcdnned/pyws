@@ -1,0 +1,466 @@
+define001110
+字节	长度	类型	描述	取值说明	必选/可选 
+	2	Numeric	省代码	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	旧帐号		如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为29	O
+	17	Numeric	交易帐号		如使用新帐号必需输入，否则为空
+	18	Alphanumeric	Filler	全置空格,set space	O
+	18	Numeric	交易金额	S9(14)V999	M
+	10	Alphanumeric	Filler	全置空格，set space	O
+	2	Alphanumeric	提示码	NF为免费。如不输入按照账户默认规则收费。	O
+	2	Numeric	延迟计息天数	使银行从存款额中减去指定天数的利息。延迟利息计算的天数	O
+	84	Alphanumeric	Filler	全置空格	O
+	3	Alphanumeric	转出币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	兑换金额	同转出金额
+S9(14)V999	O
+	3	Alphanumeric	转入币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	本币金额	以本币形式录入金额的对等金额，同一币种同交易金额
+S9(14)V999	O
+	18	Numeric	佣金	该次兑换所需之手续费金额，同一币种置空值。
+S9(14)V999	O
+	18	Numeric	找零	该次兑换终端系统计算所得的找零货币金额，返还客户，同一币种交易置空值。
+S9(14)V999	O
+	2	Numeric	汇(利)率类型	取值如下：
+01：现钞(预设值)
+02：现汇	O
+	4	Alphanumeric	货币版本 Currency Version	同一币种置空值。	O
+	9	Numeric	原交易流水号		M
+	178	Alphanumeric	Filler	全置空格,set space	O
+	4	Numeric	现金统计分析码	见附表8	O
+	4	Numeric	产品类型	产品类型取值见附表4 (dacctype.htm)	O
+	4	Numeric	产品子类	产品子类取值见附表4 (dintcat.htm)	O
+	4	Numeric	存期	存款的期限长度﹐例如期满天数或月数。此值在存款产品参数中设定。	O
+	1	Alphanumeric	基期	定义”期限“值。可能值为:
+D  - 天数
+M  - 月数	O
+	3	Numeric	册号 Volume NO	定期一本通专用，其子账户册号
+The volume NO for the sub-accounts of  MAC account.	定期一本通账户必输，其他产品本字段为空；Mandatory for a MAC Account， Blank for other product.
+	2	Numeric	序号Serial NO	定期一本通装用，其子账户序号
+The serial NO for the sub-accounts of  MAC account.	定期一本通账户必输，其他产品本字段为空；Mandatory for a MAC Account， Blank for other product.
+	162	Alphanumeric	Filler	全置空格,set space	O
+	45	Alphanumeric	对账单摘要	自由形式字段包含费用描述	O
+	229	Alphanumeric	Filler	全置空格,set space	O
+	19	Alphanumeric	借记卡卡号		O
+	2	Numeric	旧账号标识	旧帐号域个数标识，值为1	O
+define010732
+长度	类型Type	描述	取值说明	必输/可选
+Length		Description	Value Description	Mandatory/
+　		　	　	Optional
+17	Numeric	账户	9（17）	M
+13	Numeric	利息调整金额	9(7)V99999S	M
+4	Numeric	原因代码	9(4)	M
+32	Alphanumeric	授权用户	X（32）	O
+2	Alphanumeric	FILLER	X(2)	O
+1	Alphanumeric	ACCRUE利息	I:应收利息
+W:拖欠本金罚息
+A:应收利息罚息
+E:复利	M
+50	Alphanumeric	对账单摘要	X(50)	O
+
+define062000
+长度	类型	描述	字段取值说明	输入性选项
+17	Numeric	现有CIF号码/账号	9(17)	必须输入
+16		FILLER	空格填充	
+3	Alphanumeric	系统	X(3) 选择CON：建立合同	必须输入
+1	Alphanumeric	客户号/账号	系统使用该信息决定用哪个校验位规则。（1位字符）有效值为：	必须输入
+			A:账号	
+			C:客户号码	
+4	Numeric	产品类型	9(4)	必输（可搜索）
+4	Numeric	产品子类	9(4)	必须输入
+17	Numeric	账号	9(17)	隐藏
+3	Alphanumeric	货币	XXX	隐藏
+3		FILLER	空格填充	
+17	Numeric	合同号	9(17)	选输
+4	Alphanumeric	合同类型	X(4)	选输
+1	Alphanumeric	内部来账标识(待确认)	X	选输
+19	Numeric	卡号	9(19)	隐藏
+823		FILLER		
+32	Alphanumeric	DefaultString1	X(32)	隐藏
+2	Alphanumeric	DefaultString4	XX	隐藏
+
+define029161
+<FIELD Format="9(17)" ID="AcctNum" />
+        <FIELD Format="9(2)" ID="ProvinceCode" />
+        <FIELD Format="X(2)" ID="Options" />
+        <FIELD Format="X(4)" ID="IBDType" />
+        <FIELD Format="X(20)" ID="StartNum" />
+        <FIELD Format="9(8)" ID="Quantity" />
+        <FIELD Format="X(20)" ID="EndNum" />
+        <FIELD Format="X(20)" ID="Reason" />
+
+define010340
+<FIELD Format="9(17)" ID="accntNumber1" />
+	<FIELD Format="9(1)" ID="AdjCde" />
+	<FIELD Format="X(1)" ID="AdjTyp" />
+	<FIELD Format="9(4)" ID="BegNum" />
+	<FIELD Format="X(26)" ID="stmtrnrtv1"/>
+	<FIELD Format="X(18)" ID="AdjJournalNo" />
+
+define011091
+<FIELD Format="9(17)" ID="accntNumber1" />
+    <FIELD Format="9(14)V999S" ID="Amount1" />
+    <FIELD Format="9" ID="DefInteger1" />
+    <FIELD Format="99" ID="DefInteger2" />
+    <FIELD Format="XX" ID="promono1" />
+    <FIELD Format="X" ID="bucketcode"  Offset="568" />
+<FIELD Format="X(50)" ID="DefaultString1"/>
+
+define000160
+字节	长度	类型	描述	取值说明	必选/可选 
+	2	Numeric	省代码/转出方	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	旧帐号		如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为29	O
+	17	Numeric	取款帐号		如使用新帐号必需输入，否则为空
+	18	Numeric	账户余额	S9(14)V999	O
+	18	Numeric	取款金额	S9(14)V999	M
+	8	Alphanumeric	Filler	全置空格，set space	O
+	8	Numeric	交易日期	DDMMYYYY	M
+	2	Alphanumeric	提示码	NF为免费。如不输入按照账户默认规则收费。	O
+	80	Alphanumeric	Filler	全置空格，set space	O
+	3	Alphanumeric	转出币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	兑换金额	同转出金额
+S9(14)V999	O
+	3	Alphanumeric	转入币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	本币金额	以本币形式录入金额的对等金额，同一币种同交易金额
+S9(14)V999	O
+	18	Numeric	佣金	该次兑换所需之手续费金额，同一币种置空值。
+S9(14)V999	O
+	18	Numeric	找零	该次兑换终端系统计算所得的找零货币金额，返还客户，同一币种交易置空值。
+S9(14)V999	O
+	2	Numeric	汇(利)率类型	取值如下：
+01：现钞(预设值)
+02：现汇	O
+	4	Alphanumeric	货币版本 Currency Version	同一币种置空值。	O
+	9	Numeric	原交易流水号		M
+	362	Alphanumeric	Filler	全置空格,set space	O
+	50	Alphanumeric	对账单摘要	自由形式字段包含费用描述	O
+	41	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	通提密码		O
+	1	Alphanumeric	Filler	全置空格;set space	O
+	2	Numeric	存折版本号		O
+	18	Alphanumeric	Filler	全置空格;set space	O
+	2	Numeric	存折行号		O
+	9	Numeric	存折序号		O
+	3	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	凭证类型	见附表1	M
+	20	Alphanumeric	凭证号码		M
+	1	Alphanumeric	支取方式	支取方式取值如下：
+1-支付密码
+2-电子印鉴
+3-手工印签
+4-密码
+5-签字
+6-无要求
+8-一票一密
+9-强制扣划
+A-证件号码
+B-电子印鉴+密码
+C-手工印鉴+密码
+D-密码+证件号码
+E-电子印鉴+支付密码
+F-手工印鉴+支付密码	O
+	11	Alphanumeric	Filler	全置空格;set space	O
+	4	Numeric	现金统计分析码	见附表8	O
+	16	Alphanumeric	Filler	全置空格,set space	O
+	6	Alphanumeric	密码		O
+	9	Alphanumeric	Filler	全置空格,set space	O
+	4	Alphanumeric	子账户类别	活期一本通专用，其子账户类型。
+The sub-accounts of the current All – in – One passbook account .	活期一本通用户必输，否则为空
+It is mandatory if the current All – in – One passbook account, Blank for other produce..
+	2	Numeric	旧账号标识	旧帐号域个数标识，值为1	O
+
+define000145
+字节	长度	类型	描述	取值说明	必选/可选 
+	2	Numeric	省代码/转出方	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	转出旧帐号	转出客户的旧帐号This shows the customer’s Old account NO.	如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为57	O
+	2	Numeric	省代码/转入方	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	转入旧帐号	转入客户的旧帐号This shows the customer’s Old account NO.	如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为122	O
+	17	Numeric	转出帐号	转出客户的帐号	如使用新帐号必需输入，否则为空
+	18	Numeric	账户余额	S9(14)V999	O
+	18	Numeric	转出金额	S9(14)V999	M
+	10	Alphanumeric	Filler	全置空格，set space	O
+	2	Alphanumeric	提示码	NF为免费。如不输入按照账户默认规则收费。	O
+	17	Numeric	转入账号	转入的客户帐号	如使用新帐号必需输入，否则为空
+	2	Alphanumeric	Filler	全置空格,set space	O
+	2	Alphanumeric	不起息天数	该字段可以处理用户账户的将来过期的交易。输入天数以限制交易值。	O
+	2	Numeric	延迟计息天数	使银行从存款额中减去指定天数的利息。延迟利息计算的天数	O
+	2	Numeric	借记延迟计息天数	可使银行从任何特定的借记利息计算天数中减去存款金额。 输入借记延迟利息计算的天数	O
+	62	Alphanumeric	Filler	全置空格	O
+	3	Alphanumeric	转出币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	M
+	18	Numeric	兑换金额	同转出金额
+S9(14)V999	O
+	3	Alphanumeric	转入币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	M
+	18	Numeric	本币金额	以本币形式录入金额的对等金额，同一币种同交易金额
+S9(14)V999	O
+	18	Numeric	佣金	该次兑换所需之手续费金额，同一币种置空值。
+S9(14)V999	O
+	18	Numeric	找零	该次兑换终端系统计算所得的找零货币金额，返还客户，同一币种交易置空值。
+S9(14)V999	O
+	2	Numeric	汇(利)率类型	取值如下：
+01：现钞
+02：现汇	O
+	4	Alphanumeric	货币版本 Currency Version	同一币种置空值。	O
+	9	Numeric	原交易流水号		M
+	362	Alphanumeric	Filler	全置空格,set space	O
+	50	Alphanumeric	对账单摘要	自由形式字段包含费用描述	O
+	4	Alphanumeric	子账户类型	活期一本通专用，其子账户类型。
+The sub-accounts of the current All – in – One passbook account .	活期一本通用户必输，否则为空
+It is mandatory if the current All – in – One passbook account, Blank for other produce..
+	4	Numeric	产品类型	产品类型取值见附表4 (dacctype.htm)	O
+	4	Numeric	产品子类	产品子类取值见附表4 (dintcat.htm)	O
+	4	Numeric	存期	存款的期限长度﹐例如期满天数或月数。此值在存款产品参数中设定。	O
+	1	Alphanumeric	基期	定义”期限“值。可能值为:
+D  - 天数
+M  - 月数	O
+	3	Numeric	册号
+Volume NO		O
+	2	Numeric	序号Serial NO		O
+	47	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	凭证类型	VoucherTypeDeposits2.htm
+2201: 活期一本通存折
+2203: 活期一本通存折(成长账户)	M
+	20	Alphanumeric	凭证号码		M
+	1	Numeric	支取方式	支取方式取值见附表七	O
+	6	Numeric	取款密码	输入项为凭密码时必须输入	O
+	84	Alphanumeric	Filler	全置空格,set space	O
+	1	Alphanumeric	利率类型		O
+	6	Numeric	议价利率	99V9999	O
+	6	Numeric	利率加减点	S99V999	O
+	18	Alphanumeric	Filler	全置空格,set space	O
+	2	Numeric	存折行号		O
+	9	Numeric	存折序号		O
+	20	Alphanumeric	Filler	全填空格,set space	O
+	2	Numeric	旧账号标识	旧帐号域个数标识，值为2	O
+
+define005160
+字节	长度	类型	描述	取值说明	必选/可选 
+	2	Numeric	省代码/转出方	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	旧帐号		如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为29	O
+	17	Numeric	取款帐号		如使用新帐号必需输入，否则为空
+	18	Numeric	账户余额	S9(14)V999	O
+	18	Numeric	取款金额	S9(14)V999	M
+	16	Alphanumeric	Filler	全置空格，set space	O
+	2	Alphanumeric	提示码	NF为免费。如不输入按照账户默认规则收费。	O
+	80	Alphanumeric	Filler	全置空格，set space	O
+	3	Alphanumeric	转出币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	兑换金额	同转出金额
+S9(14)V999	O
+	3	Alphanumeric	转入币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	本币金额	以本币形式录入金额的对等金额，同一币种同交易金额
+S9(14)V999	O
+	18	Numeric	佣金	该次兑换所需之手续费金额，同一币种置空值。
+S9(14)V999	O
+	18	Numeric	找零	该次兑换终端系统计算所得的找零货币金额，返还客户，同一币种交易置空值。
+S9(14)V999	O
+	2	Numeric	汇(利)率类型	取值如下：
+01：现钞(预设值)
+02：现汇	O
+	4	Alphanumeric	货币版本 Currency Version	同一币种置空值。	O
+	9	Numeric	原交易流水号		M
+	362	Alphanumeric	Filler	全置空格,set space	O
+	50	Alphanumeric	对账单摘要	自由形式字段包含费用描述	O
+	41	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	通提密码		O
+	1	Alphanumeric	Filler	全置空格;set space	O
+	2	Numeric	存折版本号		O
+	18	Alphanumeric	Filler	全置空格;set space	O
+	2	Numeric	存折行号		O
+	9	Numeric	存折序号		O
+	3	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	凭证类型	见附表1	M
+	20	Alphanumeric	凭证号码		M
+	1	Alphanumeric	支取方式	见附表7	O
+	11	Alphanumeric	Filler	全置空格;set space	O
+	4	Numeric	现金统计分析码	见附表8	O
+	16	Alphanumeric	Filler	全置空格,set space	O
+	6	Alphanumeric	密码		O
+	9	Alphanumeric	Filler	全置空格,set space	O
+	4	Alphanumeric	子账户类别	活期一本通专用，其子账户类型。
+The sub-accounts of the current All – in – One passbook account .	活期一本通用户必输，否则为空
+It is mandatory if the current All – in – One passbook account, Blank for other produce..
+	2	Numeric	旧账号标识	旧帐号域个数标识，值为1	O
+
+define005110
+字节	长度	类型	描述	取值说明	必选/可选 
+	2	Numeric	省代码	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	旧帐号		如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为29	O
+	17	Numeric	交易帐号		如使用新帐号必需输入，否则为空
+	18	Numeric	账户余额	S9(14)V999	O
+	18	Numeric	交易金额	S9(14)V999	M
+	2	Alphanumeric	Filler	全置空格，set space	O
+	8	Numeric	交易日期	DDMMYYYY	M
+	2	Alphanumeric	提示码	NF为免费。如不输入按照账户默认规则收费。	O
+	2	Numeric	延迟计息天数	使银行从存款额中减去指定天数的利息。延迟利息计算的天数	O
+	84	Alphanumeric	Filler	全置空格	O
+	3	Alphanumeric	转出币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	兑换金额	同转出金额
+S9(14)V999	O
+	3	Alphanumeric	转入币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	O
+	18	Numeric	本币金额	以本币形式录入金额的对等金额，同一币种同交易金额
+S9(14)V999	O
+	18	Numeric	佣金	该次兑换所需之手续费金额，同一币种置空值。
+S9(14)V999	O
+	18	Numeric	找零	该次兑换终端系统计算所得的找零货币金额，返还客户，同一币种交易置空值。
+S9(14)V999	O
+	2	Numeric	汇(利)率类型	取值如下：
+01：现钞(预设值)
+02：现汇	O
+	4	Alphanumeric	货币版本 Currency Version	同一币种置空值。	O
+	9	Numeric	原交易流水号		M
+	154	Alphanumeric	Filler	全置空格,set space	O
+	4	Alphanumeric	凭证类型	见附表1	O
+	20	Alphanumeric	凭证号码		O
+	4	Numeric	现金统计分析码	见附表8	M
+	4	Numeric	产品类型	产品类型取值见附表4 (dacctype.htm)	O
+	4	Numeric	产品子类	产品子类取值见附表4 (dintcat.htm)	O
+	4	Numeric	存期	存款的期限长度﹐例如期满天数或月数。此值在存款产品参数中设定。	O
+	1	Alphanumeric	基期	定义”期限“值。可能值为:
+D  - 天数
+M  - 月数	O
+	3	Numeric	册号	定期一本通专用，其子账户册号
+The volume NO for the sub-accounts of  MAC account.	定期一本通账户必输，其他产品本字段为空；Mandatory for a MAC Account， Blank for other product.
+	2	Numeric	序号	定期一本通装用，其子账户序号
+The serial NO for the sub-accounts of  MAC account.	定期一本通账户必输，其他产品本字段为空；Mandatory for a MAC Account， Blank for other product.
+	167	Alphanumeric	Filler	全置空格,set space	O
+	50	Alphanumeric	对账单摘要	自由形式字段包含费用描述	O
+	45	Alphanumeric	Filler	全置空格,set space	O
+	2	Numeric	银行存折版本号		O
+	18	Alphanumeric	Filler	全置空格,set space	O
+	2	Numeric	银行存折行号		O
+	9	Numeric	银行存折序号		O
+	2	Numeric	旧账号标识	旧帐号域个数标识，值为1	O
+
+define005145
+字节	长度	类型	描述	取值说明	必选/可选 
+	2	Numeric	省代码/转出方	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	转出旧帐号	转出客户的旧帐号This shows the customer’s Old account NO.	如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为57	O
+	2	Numeric	省代码/转入方	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	如使用旧账号该字段必须输入，否则为空
+	23	Alphanumeric	转入旧帐号	转入客户的旧帐号This shows the customer’s Old account NO.	如使用旧账号该字段必须输入，否则为空
+	3	Numeric	Offset	旧账号偏移位，值为122	O
+	17	Numeric	转出帐号	转出客户的帐号	如使用新帐号必需输入，否则为空
+	18	Numeric	账户余额	S9(14)V999	O
+	18	Numeric	转出金额	S9(14)V999	M
+	2	Alphanumeric	Filler	全置空格，set space	O
+	8	Numeric	交易日期	DDMMYYYY	M
+	2	Alphanumeric	提示码	NF为免费。如不输入按照账户默认规则收费。	O
+	17	Numeric	转入账号	转入的客户帐号	如使用新帐号必需输入，否则为空
+	2	Alphanumeric	Filler	全置空格,set space	O
+	2	Alphanumeric	不起息天数	该字段可以处理用户账户的将来过期的交易。输入天数以限制交易值。	O
+	2	Numeric	延迟计息天数	使银行从存款额中减去指定天数的利息。延迟利息计算的天数	O
+	2	Numeric	借记延迟计息天数	可使银行从任何特定的借记利息计算天数中减去存款金额。 输入借记延迟利息计算的天数	O
+	62	Alphanumeric	Filler	全置空格	O
+	3	Alphanumeric	转出币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	M
+	18	Numeric	兑换金额	同转出金额
+S9(14)V999	O
+	3	Alphanumeric	转入币种	默认为“CNY”: 人民币
+详细币种选项见附表3。	M
+	18	Numeric	本币金额	以本币形式录入金额的对等金额，同一币种同交易金额
+S9(14)V999	O
+	18	Numeric	佣金	该次兑换所需之手续费金额，同一币种置空值。
+S9(14)V999	O
+	18	Numeric	找零	该次兑换终端系统计算所得的找零货币金额，返还客户，同一币种交易置空值。
+S9(14)V999	O
+	2	Numeric	汇(利)率类型	取值如下：
+01：现钞
+02：现汇	O
+	4	Alphanumeric	货币版本 Currency Version	同一币种置空值。	O
+	9	Numeric	交易流水号		M
+	362	Alphanumeric	Filler	全置空格,set space	O
+	50	Alphanumeric	对账单摘要	自由形式字段包含费用描述	O
+	4	Alphanumeric	子账户类型	活期一本通专用，其子账户类型。
+The sub-accounts of the current All – in – One passbook account .	活期一本通用户必输，否则为空
+It is mandatory if the current All – in – One passbook account, Blank for other produce..
+	4	Numeric	产品类型	产品类型取值见附表4 (dacctype.htm)	O
+	4	Numeric	产品子类	产品子类取值见附表4 (dintcat.htm)	O
+	4	Numeric	存期	存款的期限长度﹐例如期满天数或月数。此值在存款产品参数中设定。	O
+	1	Alphanumeric	基期	定义”期限“值。可能值为:
+D  - 天数
+M  - 月数	O
+	3	Numeric	册号
+Volume NO		O
+	2	Numeric	序号Serial NO		O
+	20	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	密码		O
+	23	Alphanumeric	Filler	全置空格;set space	O
+	4	Alphanumeric	凭证类型	见附表1	M
+	20	Alphanumeric	凭证号码		M
+	1	Numeric	支取方式	支取方式取值见附表7	O
+	6	Numeric	取款密码	支取方式为凭密码时必须输入	O
+	84	Alphanumeric	Filler	全置空格,set space	O
+	1	Alphanumeric	利率类型		O
+	6	Numeric	议价利率	99V9(4)	O
+	6	Numeric	利率加减点	S99V999	O
+	2	Numeric	存折版本号		O
+	2	Numeric	存折行号		O
+	9	Numeric	存折序号		O
+	2	Numeric	旧账号标识	旧帐号域个数标识，值为2	O
+
+define029164
+字节Byte	长度Length	数据类型Data Type	描述Descripton	取值说明Value Description	必输/可选Mandatory/Optional
+	17	Numeric	帐号	要连接到客户账户的账号	O
+	2	Numeric	省代码	原是定义各省的代码而用，依据目前广东农信社现状，应该定义各地市县代码，由业务组确定。	O
+	2	Alphanumeric	Filler	全置空格，set space	O
+	4	Alphanumeric	重空类型
+IBD Type	见附表1	M
+	20	Alphanumeric	起始号码
+Start Number	重空的起始号码		M
+	8	Numeric	数量
+Quantity 	重空的数量	O
+	20	Alphanumeric	终止号码
+END Number	中空的终止号码	M
+	20	Alphanumeric	Filler	全置空格，set space	O
+	1	Alphanumeric	挂失类型
+Lost Registration Type	挂失类型取值：
+1:口头挂失
+2:书面挂失	M
+	8	Numeric	起始日期
+Start Data	表示挂失登记（LR）的开始日期，这只对单个IBD挂失才有意义。默认日期是系统的当前日期。DDMMYYYY	O
+	8	Numeric	终止日期
+End Data	表示挂失的终止日期，仅对单个的IBD挂失才有意义。DDMMYYYY	O
+	30	Alphanumeric	挂失人
+Proposer	挂失人	O
+	18	Numeric	金额
+Quantity	表示IBD的金额信息，仅对单个的IBD挂失才有意义。
+S9(14)V999	O
+	8	Numeric	日期
+Data	表示IBD的日期信息，仅对单个的IBD挂失才有意义。	O
+	2	Alphanumeric	"IDType"证件类型       	"X(2)"客户的证件类型 	
+	32	Alphanumeric	"IDNumber"证件号码     	"X(32)"客户的证件号码	
+	2	Alphanumeric	"AgentIDType"  代理人证件类型	"X(2)" 代理人的证件类型	
+	32	Alphanumeric	"AgentIDNumber"证件人证件号码	"X(32)"代理人证件号码	
+	30	Alphanumeric	"LostReason"挂失原因 	"X(30)" 挂失原因   	
+
+define029165
+<FIELD Format="9(17)" ID="AcctNum" />
+        <FIELD Format="9(2)" ID="ProviceCode" />
+        <FIELD Format="X(4)" ID="IBDType" Offset="2" />
+        <FIELD Format="X(20)" ID="StartNum" />
+        <FIELD Format="9(8)" ID="Quantity" />
+        <FIELD Format="X(20)" ID="EndNum" />
+        <FIELD Format="ddMMyyyy" ID="LostRegistrationStartDate" Offset="21" />
+        <FIELD Format="ddMMyyyy" ID="LostRegistrationEndDate" />
+        <FIELD Format="X(30)" ID="Proposer" />
+        <FIELD Format="9(14)V999S" ID="Amt" />
+        <FIELD Format="ddMMyyyy" ID="Date" />
+        <FIELD Format="9(9)" ID="LostRegistrationTraceNum" />
+        <FIELD Format="X(2)" ID="IDType" />
+        <FIELD Format="X(32)" ID="IDNumber" />
+        <FIELD Format="X(2)" ID="AgentIDType" />
+        <FIELD Format="X(32)" ID="AgentIDNumber" />
+

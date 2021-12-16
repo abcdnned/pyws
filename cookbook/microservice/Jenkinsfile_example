@@ -1,0 +1,252 @@
+#!/usr/bin/groovy
+@Library('common-shared-lib') _
+
+pipeline {
+    environment {
+        SERVICE_NAME = 'cockpit-rbpconfig-service'
+        RELEASE_VERSION = sh(returnStdout: true, script: "echo ${BRANCH_NAME}_`date +%Y%m%d%H%M%S`")
+        RELEASE_BRANCH_PATTERN = "^(master|b\\d{4}|ref_pipeline)"
+
+        /* SAP Artifacoty Credential */
+        RESOLVE_ARTIFACTS_CREDENTIAL = credentials('platform-foundation-repo-read')
+
+        /* JAVA Assembly options */
+        ENABLE_PUSH_ASSEMBLY = true
+
+        /* docker image options */
+        REGISTRY_URL = 'https://registry-upload.hcm-eng.c.eu-de-1.cloud.sap'
+        IMAGE_PULL_URL = 'registry.hcm-eng.c.eu-de-1.cloud.sap'
+        REGISTRY_PATH = 'bizx'
+        REGISTRY_CREDENTIAL = 'upload-registry-hcm-eng-credential'
+        DOCKERFILE_DIR = '.'
+        ENABLE_PUSH_IMAGE = true
+
+        /* binary output folder */
+        OUTPUT_DIR = 'build/libs'
+
+
+        /* Quality gate settings */
+        ENABLE_SONAR_SCAN = false
+        ENABLE_SECURITY_SCAN = true
+
+        /* optional settings */
+        SECAAS_CREDENTIAL = 'secaas-credential'
+        GITHUB_TAGGING_CREDENTIAL = 'sfcdbuild-github-token' //sfcdbuild github token credential id
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+        timeout(time: 1, unit: 'HOURS')
+        timestamps()
+    }
+    parameters {
+        booleanParam(name: 'SKIP_SECURITY', defaultValue: true, description: 'Skip Security Gates, available only ENABLE_SECSCAN is configured')
+    }
+    agent {
+        kubernetes {
+            defaultContainer 'sapjvm'
+            yaml """
+apiVersion: "v1"
+kind: "Pod"
+spec:
+  containers:
+    - name: jnlp
+      image: docker.wdf.sap.corp:50001/sap-production/jnlp-alpine:3.26.1-sap-02
+      args: ['\${JENKINS_SECRET}', '\${JENKINS_NAME}']
+    - name: "sapjvm"
+      image: docker.wdf.sap.corp:50000/build-agent/sapmachine:11.0.8.202012160904
+      command:
+        - cat
+      tty: true
+      volumeMounts:
+        - mountPath: "/home/gradle/.gradle"
+          name: "volume-0"
+    - name: sonarcli
+      image: docker.wdf.sap.corp:50000/build-agent/sonarcli
+      command:
+        - cat
+      tty: true
+    - name: docker
+      image: docker/compose:latest
+      command:
+        - cat
+      tty: true
+      volumeMounts:
+        - mountPath: "/var/run/docker.sock"
+          name: "volume-1"
+    - name: kustomize
+      image: docker.wdf.sap.corp:50000/buildservices/buildtools/kustomize
+      command:
+        - cat
+      tty: true    
+  volumes:
+    - name: "volume-0"
+      hostPath:
+        path: "/tmp/jenkins/.gradle"
+    - name: "volume-1"
+      hostPath:
+        path: "/var/run/docker.sock"
+"""
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh './gradlew compile -Dorg.gradle.jvmargs=-Xmx1024M -DsapRepoUsername=${RESOLVE_ARTIFACTS_CREDENTIAL_USR} -DsapRepoPassword=${RESOLVE_ARTIFACTS_CREDENTIAL_PSW}'
+                sh './gradlew test -Dorg.gradle.jvmargs=-Xmx1024M -DsapRepoUsername=${RESOLVE_ARTIFACTS_CREDENTIAL_USR} -DsapRepoPassword=${RESOLVE_ARTIFACTS_CREDENTIAL_PSW}'
+            }
+        }
+        stage('Staic Checks') {
+            when {
+                expression { ENABLE_SONAR_SCAN.toBoolean() }
+            }
+            steps {
+                container('sonarcli') {
+                    script {
+                        def scmUrl = scm.getUserRemoteConfigs()[0].getUrl()
+                        def envBranchName = env.BRANCH_NAME
+                        def envTargetBranch = env.CHANGE_TARGET ?: ''
+                        def envVar = env
+                        runSonarScan {
+                            githubRepo = scmUrl
+                            branchName = envBranchName
+                            baseBranch = envTargetBranch
+                            releaseTag = envVar.RELEASE_VERSION
+                            targetBranch = ''
+                            enableSonarAuth = true
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Create Assembly') {
+            when {
+                branch pattern: RELEASE_BRANCH_PATTERN, comparator: "REGEXP"
+            }
+            steps {
+                script {
+                    sh './gradlew clean'
+                    sh './gradlew assemble -DsapRepoUsername=${RESOLVE_ARTIFACTS_CREDENTIAL_USR} -DsapRepoPassword=${RESOLVE_ARTIFACTS_CREDENTIAL_PSW} -PcomponentVersion=${RELEASE_VERSION}'
+
+                    def gitUrl = scm.getUserRemoteConfigs()[0].getUrl()
+                    def envVar = env
+                    gitTag {
+                        url = gitUrl
+                        name = envVar.RELEASE_VERSION
+                        credentials = envVar.GITHUB_TAGGING_CREDENTIAL
+                    }
+
+                    publishAssembly {
+                        BRANCH = envVar.BRANCH_NAME
+                        BUILD_VERSION = envVar.RELEASE_VERSION
+                        APP_NAME = envVar.SERVICE_NAME
+                        SOURCE_DIR = envVar.OUTPUT_DIR
+                        METHOD = 'RSYNC'
+                        BINARIES = true
+                        LATEST = true
+                    }
+                    archiveArtifacts artifacts: 'BuildVersion.properties,tag.txt', fingerprint: true
+                    currentBuild.rawBuild.displayName = "#${env.BUILD_NUMBER}_${RELEASE_VERSION}"
+                }
+            }
+        }
+
+        stage('Build Image') {
+            when {
+                allOf {
+                    branch pattern: RELEASE_BRANCH_PATTERN, comparator: "REGEXP"
+                    expression { ENABLE_PUSH_IMAGE.toBoolean() }
+                }
+            }
+            steps {
+                container('docker') {
+                    script {
+                        def envVar = env
+                        sh "chmod -R 777 build"
+                        dir(DOCKERFILE_DIR) {
+                            def app = buildDockerImage {
+                                SERVICE_NAME = envVar.SERVICE_NAME
+                                REGISTRY_PATH = envVar.REGISTRY_PATH
+                                BUILD_ARGS = ['release_version': envVar.RELEASE_VERSION]
+                            }
+                            publishDockerImage(app) {
+                                IMAGE_TAG = envVar.RELEASE_VERSION
+                                PUBLISH_LATEST = true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('security scan') {
+            when {
+                allOf {
+                    branch pattern: RELEASE_BRANCH_PATTERN, comparator: "REGEXP";
+                    expression { ENABLE_SECURITY_SCAN.toBoolean() }
+                    expression { return !params.SKIP_SECURITY }
+                }
+            }
+            steps {
+                container('docker') {
+                    script {
+                        def registry = IMAGE_PULL_URL
+                        def fullCommitId = sh returnStdout: true, script: 'git log -1 --pretty=format:\'%H\''
+                        def gitUrl = scm.getUserRemoteConfigs()[0].getUrl() + "@${env.BRANCH_NAME}:${fullCommitId}"
+                        def envVar = env
+                        triggerSecaaS {
+                            SECAAS_CREDENTIAL = envVar.SECAAS_CREDENTIAL
+                            gitBranchUrl = gitUrl
+                            dockerImageFullPath = "${registry}/${envVar.REGISTRY_PATH}/${envVar.SERVICE_NAME}:${envVar.RELEASE_VERSION}"
+                            scanImageOnly = false
+                            plainOutput = false
+                        }
+                    }
+                }
+            }
+        }
+        stage('Deploy ENGCD') {
+            when {
+                allOf {
+                    branch pattern: RELEASE_BRANCH_PATTERN, comparator: "REGEXP"
+                    expression { ENABLE_PUSH_IMAGE.toBoolean() }
+                }
+            }
+            steps {
+                echo "TODO:"
+            }
+        }
+        stage('Mark Build Releasable') {
+            when {
+                allOf {
+                    branch pattern: RELEASE_BRANCH_PATTERN, comparator: "REGEXP"
+                    expression { ENABLE_PUSH_ASSEMBLY.toBoolean() }
+                }
+            }
+            steps {
+                script {
+                    def envVar = env
+                    publishAssembly {
+                        BRANCH = envVar.BRANCH_NAME
+                        BUILD_VERSION = envVar.RELEASE_VERSION
+                        APP_NAME = envVar.SERVICE_NAME
+                        METHOD = 'RSYNC'
+                        QUALIFIED = true
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            junit allowEmptyResults: true, testResults: 'build/test-results/test/TEST-*.xml, build/test-results/component/TEST-*.xml, build/test-results/integration/TEST-*.xml'
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: "build/reports/jacoco/html/", reportFiles: 'index.html', reportName: 'JaCoCo', reportTitles: 'Code-Coverage'])
+        }
+        failure {
+            script {
+                sendEmailNotification()
+            }
+        }
+    }
+}

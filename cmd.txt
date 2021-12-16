@@ -1,0 +1,3 @@
+grep -v "preparse" dcd-parser/logs/throughput2.log | awk -F, '{gsub(/pps/,"",$4);sum += $4; if($4>0) n++} END{print sum/n}'
+
+java -jar D:\tmp\release-netis-shanghai-replay-1.1.0-local-20140326110234\bin\shanghai-replay.jar -i file=D:\tmp\release-netis-shanghai-replay-1.1.0-local-20140326110234\bin\rhsfrz_20161019100018028420.pcap -o target=file://D:\tmp\release-netis-shanghai-replay-1.1.0-local-20140326110234\bin\rhsfrz_largeSize.pcap,fileSpan=31536000 -m nowait -L 1000

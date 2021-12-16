@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<decode version="3.3">
+    <pcapPath>${pcap.home}/SECJ1.pcap</pcapPath>
+    <category>行业公共.证券.供应商</category>
+    <property>
+        <recordCode>
+            <field>PktId</field>
+            <field>FlowId</field>
+            <field>Vlan</field>
+            <field>SrcIp</field>
+            <field>DestIp</field>
+            <field>IpId</field>
+            <field>SrcPort</field>
+            <field>DestPort</field>
+            <field>RRA</field>
+            <field>Prot</field>
+        </recordCode>
+
+        <!-- Parse time threshold for each packet, unit is millisecond. Set this-value=0
+            to disable this feature. Default is 60000 milliseconds. -->
+        <packetParseTimeMilli>60000</packetParseTimeMilli>
+
+        <!-- Flow timeout millisecond. Default is 120000ms. Group can override. -->
+        <flowTimeout>120000</flowTimeout>
+        <!-- Flow attach timeout millisecond. Default is 9000ms. Group can override. -->
+        <flowAttachTimeout>9000</flowAttachTimeout>
+        <!-- Flow detach timeout millisecond. Default is 120000ms. Group can override. -->
+        <flowDetachTimeout>120000</flowDetachTimeout>
+
+        <!-- If flow cached packet-count > this-value, it will trigger the cleanup
+            process to clean the clean-rate percentage of the cached packets. Set this-value
+            = 0 to disable this feature. Default is 100 & 0.6. -->
+        <flowContextPacketCount>10</flowContextPacketCount>
+        <flowContextPacketCleanRate>0.6</flowContextPacketCleanRate>
+
+        <!-- Enable mismatch drop packet. Default is false. -->
+        <mismatchDropPacketEnable>true</mismatchDropPacketEnable>
+
+        <!-- Control the overall maximal connection count. If cached connection-count
+            >= the-value, the new incoming connection will be dropped until at least one existing
+            connection has been dropped. Set this-value = 0 to disable this feature. Default
+            is 1000000. -->
+        <globalConnectionCount>500000</globalConnectionCount>
+        <!-- Control the max drop connection lookup count for each processing partition.
+            If partition's drop connection lookup count >= the-value, the lookup will be clean.
+            Set this-value = 0 to disable this feature. Default is 100000. -->
+        <localDropConnectionCount>100000</localDropConnectionCount>
+
+        <!-- Control the PDU buffer size in bytes. The range of this value is [4K,
+            64M]. Default is 4M. -->
+        <pduBufferSize>1536000</pduBufferSize>
+        <!-- Control the PDU in cached packet count. Set this-value = O to disable
+            this feature. Default is 100. -->
+        <pduCachePacketCount>40</pduCachePacketCount>
+
+        <!-- Decode the payload if the payload is complete. The default value is
+            false. Group can override. -->
+        <payloadCompleteRequired>true</payloadCompleteRequired>
+        <!-- Group can override. -->
+        <optimizeOption1>false</optimizeOption1>
+        <!-- Group can override. -->
+        <decodeAsDummy>false</decodeAsDummy>
+    </property>
+
+
+</decode>

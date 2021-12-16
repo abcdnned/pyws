@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<export version="3.0">
+    <property>
+        <exportSyncBeat>false</exportSyncBeat>
+        <!-- When the export group count exceeds this-value, it is to enable the export 
+            group loop cache mechanism. Set this-value = 0 to disable this feature. Default is 
+            8. -->
+        <exportGroupLookupEnableThreshold>8</exportGroupLookupEnableThreshold>
+    </property>
+
+    <group>
+        <file>
+            <nameFile>
+                <!-- for name file, name pattern only support: %n: file name, e.g. test.pcap %p: partition 
+                    (thread) id, BTR and NTR is counted independently, e.g. 1, name pattern compress file is gz,zip,spz -->
+                <folder>projectpath:target/output/{{testname}}</folder>
+                <namePattern>%n.pcap.btr</namePattern>
+            </nameFile>
+            <header>
+                <template>time</template>
+                <timeTemplate>
+                    <timeFormat>date_nanosecond</timeFormat>
+                </timeTemplate>
+                <pack>text</pack>
+            </header>
+            <body>
+                <template>keyValue</template>
+                <pack>text</pack>
+            </body>
+        </file>
+    </group>
+</export>

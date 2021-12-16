@@ -1,0 +1,684 @@
+source linenumber in dcd 46w
+
+source linenumber in dp  42w
+
+let g:UltiSnipsSnippetDirectories=["C:/Users/tom.yang/snips","C:/Users/tom.yang/snips/netissnips","bundle/vim-snippets/UltiSnips"]
+let g:airnote_path = expand('C:/Users/tom.yang/snips/note')
+let g:pydoc_cmd = "C:/Python27/Lib/pydoc.py"
+
+java -agentlib:dpenigmaI  -jar dp-engine.jar -c ../config/default/ -m batch -i file -o btr
+
+-dontobfuscate
+
+tshark -r nvTrace/CL.pcap -w QUICK_DROP_ACK.pcap -Y "tcp.stream eq 1"
+
+kafka path /opt/kafka-.....
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+mergecap -w output.pcap intput1.pcap [intput2.pcap ....]
+
+git log -1 --name-status | grep conf.xml | grep "^[MA]" | awk '{print $2}' | xargs sed -i '20,$ s/property/prot:property/g;s/attribute/prot:attribute/g;s/recordField/prot:recordField/g;s/protocol/prot:protocol/g;s/<decode>/<decode xmlns:prot="http:\/\/www.netis.com\/schema\/decode\/protocol" xmlns:ef="http:\/\/www.netis.com\/schema\/decode\/extendField" xmlns:p="http:\/\/www.netis.com\/schema\/decode\/property" xmlns:net="http:\/\/www.netis.com\/schema\/decode\/network">/;s/payloadCompleteRequired/p:payloadCompleteRequired/g'
+
+nmcli device show enp0s25 | grep IP4.DNS
+
+ls -dt /mnt/md0/capture/DCN/*.pcap | tail -n "$del" | xargs rm
+
+export MAVEN_OPTS="-XX:+UseG1GC -XX:+PrintGCDetails -XX:+PrintFlagsFinal -Xloggc:/home/tom/tmp/gc.log"
+
+-Xloggc:/path/to/gc.log
+Path where the GC logs are written
+-XX:+UseGCLogFileRotation
+Enable GC log file rotation
+-XX:NumberOfGCLogFiles=<value>
+Number of rotated GC logs files to retain
+-XX:GCLogFileSize=<size>
+Size of each GC logs file to initiate rotation
+-XX:+PrintGCDetails
+Detailed GC log
+-XX:+PrintGCDateStamps
+Actual date and timestamp of the collection
+-XX:+PrintGCApplicationStoppedTime
+Amount of time the application stopped during GC
+-XX:+PrintGCApplicationConcurrentTime
+Amount of time the application ran between GCs
+-XX:-PrintCommandLineFlags
+Prints all the command line flags in the GC log
+
+tunning metaspace
+The log message tells that GC was caused by Metaspace allocation failure. Metaspaces hold class metadata. They have appeared in Java 8 to replace PermGen.
+
+Here are some options to tune Metaspaces.
+You may want to set one or several of the following options:
+
+-XX:MetaspaceSize=100M Sets the size of the allocated class metadata space that will trigger a garbage collection the first time it is exceeded;
+
+-XX:InitialBootClassLoaderMetaspaceSize=32M to increase the boot class loader Metaspace;
+
+-XX:MinMetaspaceFreeRatio=50 to make Metaspaces grow more agressively;
+
+-XX:MaxMetaspaceFreeRatio=80 to reduce the chance of Metaspaces shrinking;
+
+-XX:MinMetaspaceExpansion=4M the minumum size by which a Metaspace is exanded;
+
+-XX:MaxMetaspaceExpansion=16M the maximum size to expand a Metaspace by without Full GC
+
+cmd &> /dev/null &
+
+javap -c
+
+jar -xf jarfile classfile
+jar uf jarfile classfile
+
+tmux kill session
+Press your prefix (e.g. Ctrl+A or B, which is the default) and then : and type kill-session, then hit Enter. This will, as the name of the command suggests, kill the session.
+
+xargs -I {} sh w.sh {} 1.txt < ff.txt
+find -name "*_0.ntr" | awk -F"/" '{print $3}' | awk -F"." '{print substr($1, 0, length($1))"1.ntr"}' | xargs -I {} find /home/tom/gitrepo/dp/ -name {} | grep -v TCP_SLICED
+
+gcc -fpic -c test.c
+
+gcc -shared -o libtest.so test.o
+
+readelf -a -W elffile
+readelf -d  /path/to/library.so
+
+\? match preceding character 0 or 1 times (\= can also be used)
+/abc\? match 'ab' or 'abc' but not 'abcc'
+\{-} non-greedy match preceding character 0 or more times
+
+ldconfig -p
+
+ln -sf /usr/lib64/libcrypto.so.10 /usr/lib64/libcrypto.so.6
+
+learning a tool
+concep feature step-by-step
+
+docker install & uninstall
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo apt-get purge docker-ce
+
+docker change overlay2
+docker info | grep "Storage Driver"
+sudo systemctl stop docker
+sudo cp -au /var/lib/docker /var/lib/docker.bk
+echo '{ "storage-driver": "overlay2" }' | sudo tee /etc/docker/daemon.json
+sudo systemctl start docker
+
+splunk docker
+docker pull splunk/splunk:latest
+docker run -d -p 8000:8000 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUNK_PASSWORD=<password>' splunk/splunk:latest
+docker ps -a -f id=<container_id>
+localhost:8000
+docker run -it splunk/splunk help
+
+git submodule remove
+git rm --cached dp-packet/src/main/proto
+git submodule init
+git submodule update
+git protobuf:compile
+
+git submodule update == pull
+git submodule sync == if remote change repo url, this will work
+
+sudo dpkg -i xxx.deb
+sudo apt-get -f install 
+
+git add -u
+git ls-files --modified | xargs git add
+
+多文件替换 find ./ -type f -name "*.java" -exec sed -i 's/ByteArrayAllocator/ArrayAllocator/g' {} \;
+
+在目录下查找制定字符串并且替换
+grep -rl oldstr path | xargs sed -i 's/oldstr/newstr/g'
+
+@Configuration
+@EnableJpaRepositories
+@EnableTransactionManagement
+@RestController
+@LoadBalanced
+@EnableDiscoveryClient
+@SpringBootApplication
+@RibbonClient(name = "server", configuration = RibbonConfiguration.class)
+
+利用Eureka做服务发现的方法：
+初始环境，一个EurekaServer和若干台EurekaClient。
+EurekaServer和EurekaClient的实现方法是分别加上@EurekaServer和@EurekaClient注释在Application上。同时还有@SpringBootApplication
+然后在main方法中调用SpringBootApplication.run方法。
+
+创建一个Application上加上@RibbonClient注释。注释属性可以制定一个配置类，配置类可以返回IRule和IPing两个Bean用于配置负载均衡行为。
+创建一个@RestController实现RestFul服务端逻辑。
+方法是在类上注释@RestController在方法上注释@RequestMapping
+
+构建RestTemplate Bean，同时加上@LoadBalance方法。使用RestTemplate的getForObject方法来调用其他restapi实现负载均衡
+
+在application.properties中的一些重要配置项
+
+eureka.client.serviceUrl.defaultZone: http://${registry.host:localhost}:${server.port}/eureka/ eureka客户端和服务端的此项配置应该一致
+server.ribbon.eureka.enabled=true 是否通过eureka实现负载均很
+#server.ribbon.listOfServers=localhost:9090,localhost:9091,localhost:9092 hardCode管理的服务端口号，eureka不启用时通过此配置。
+
+ubuntu安装企业微信
+git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git
+./install.sh
+wget http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.weixin.work/deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb
+udo dpkg -i deepin.com.weixin.work_2.4.16.1347deepin0_i386.deb
+
+bpc fileconvert -i 20190625103500.0.ttr.kpack.sz -o 20190625103500.0.ttr.json
+
+//unicode专程中文
+StringEscapeUtils.unescapeJava
+//中文转unicode
+StringEscapeUtils.escapeJava
+
+tcp中拥塞控制和流量控制是不同的两个概念，拥塞控制使用cwind窗口来控制发送速度，使用门限来限制最大cwind
+拥塞控制有两个阶段，慢启动和拥塞避免
+在慢启动阶段cwind指数增大，达到门限以后开始加法增大，也就是拥塞避免阶段。增大的前提条件是有RRT（即有报文被确认）
+根据重传来检测和报文ack情况来检测拥塞，当拥塞发生时，门限减半，cwind回到1,进入慢启动状态。
+发送窗口等于cwind和rwind中的最小值，rwind由接收方决定，是点到点的流量控制。
+
+流量控制使用rwind，接受放定下一个窗口大小
+拥塞控制使用cwind+门限两个变量控制。有慢启动和拥塞避免两个阶段，慢启动cwind指数增加，用赛避免是cwind加法增加，分界线就是门限。
+当检测到拥塞后会将门限减半，cwind变为1,重新进入慢启动状态。
+当收到快速重传指示后，门限减半，cwind变为门限值，进入拥塞避免状态
+
+HTTPS的服务器公钥是服务器主动传送给客户端的。
+HTTPS需要买证书
+HTTPS的握手过程更加的耗时
+
+B-Tree索引原理
+B-Tree根据搜索二叉树进化而来，为了降低高度而增加每层节点的个数。B树每个节点对应外存的一个页。外存根据局部性原理和顺序读外存效率高的原因，会进行预读，预读的大小就是页的整数倍。
+B树和B+树的区别在于一个在内层节点会存储data而B+树只会在叶子几点上存储data。
+B+树查询效果稳定，因为每次查询路径都是从根节点到达一个叶子节点。由于不用存data，每个节点存的key可以更多，出度也就更大。
+B+树叶子节点上会有顺序指针方便范围查询。
+索引的实现方式跟数据库引擎有关
+InnoDB引擎使用聚集索引，索引文件本身就是数据文件。主键索引保存完整记录，辅助索引保存的是主键引用，所以每次差辅助索引需要两次查询。
+MyISAM引擎使用非聚集索引，索引文件保存指向数据文件的地址。主键索引和辅助索引结构一致。
+正对InnoDB的一些优化
+主键选择最好单调，单调的主键在插入数据时直接追加好维护，避免移动操作，同时能避免外存碎片。每个节点有一个负载因子，控制何时增加一个新节点, 如果主键耗无规律就容易产生碎片。
+而且长度要有所控制, 因为所有的辅助索引都存的是主键的引用。
+索引优化通用技术
+前缀法，使用前缀来代替完整的主键索引，减少索引长度，同时又能保障比较好的选择性。
+索引价值评价指标 记住维护索引是需要成本的
+选择性 数据量大小 
+InnoDB的索引优化策略
+
+How to wipe a Linux laptop
+If you've got a Linux-based machine, wiping any of the hard drives - internal or external - is a slightly fiddly process that involves using the command line.
+Open up a command line terminal and enter 'sudo fdisk -l'. This will list all the storage drives currently connected to your machine. Find the drive you want to wipe, and note the drive's device path.
+Next, run this command - 'sudo dd if=/dev/zero of=/dev/sdb bs=1M' - via the terminal, making sure to substitute '/dev/sdb/' with the target drive's correct device path. This method is known as 'zeroing', and wipes the drive by overwriting every byte of information with zeroes.
+There is some debate as to whether or not this is more secure than overwriting the drive with random bits of information, but it's usually quicker and is perfectly sufficient for protecting your data from the average buyer.
+
+[2019/8/12, 6:02:07 PM] Yu, Weijun: http://sapjvm.wdf.sap.corp:1080/downloads
+[2019/8/12, 6:27:23 PM] Yu, Weijun: /Library/Java/JavaVirtualMachines/sapjvm_8/Contents/Home
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/sapjvm_8/Contents/Home
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
+
+git clone git@github.wdf.sap.corp:bizx/au-V4.git
+git clone git@github.wdf.sap.corp:bizx/build-system.git
+./gradlew -u configureWorkspace
+cp bin and sfs_conf to this folder: cd build-system/sfs-local-overrides/default-tomcat
+
+查看端口占用情况
+netstat -anv | egrep -w [.]80.*LISTEN
+nc -vz localhost 8080
+lsof -i tcp:8080
+
+查看端口监听情况
+lsof -OnP | grep LISTEN
+
+查找文件
+find . -name "name"
+
+SetUp研发环境
+进入build-system下
+gradlew -u configureWorkspace
+./gradlew tomcatGenerateSfs
+进入外层目录 运行 gradlew deploy 后续可以受用gradlew redeploy命令重新部署, 在sfs-local-overrides/default-tomcat目录下可以放build后想要覆盖的配置文件
+进入 trunk\bizx-docker-dev
+启动 zookeeper kafka hana docker镜像
+进入tomcat-sfs项目下启动应用
+依赖文件:
+Archive.zip tomcat配置
+capillary-lastest.jar 测试以来jar包
+ngdbc-2.4.61.jar 数据库driver
+
+docker-compose查看container的日志文件
+docker-compose logs --tail=1000 -f api
+
+ssh到container里面的方法
+docker exec -it bizx-docker-dev_hana_1 /bin/bash
+
+使用docker-compose来进入container
+docker-compose run web /bin/bash
+To run a series of commands,
+docker-compose run 
+<name in yml> sh -c '<command 1> && <command 2> && <command 3>'
+
+nginx概念
+nginx http服务器，处理静态资源，使用反向代理实现负载均衡。可以与tomcat配合使用
+Problem Solved
+#解决问题asign requested port failed Exception，换端口也没有用，造成这一问头的原因是firewall block了java程序的connection请求，解决方案为在firewall配置中添加java应用程序到白名单
+
+解决问题，8080端口无法asign，检查防火墙发现已经为java allow incoming connection。解决方法是，重启电脑，打开previlige，然后重新跑一遍
+
+docker-compose启动服务
+docker-compose up 如果想要后台运行加上 -d 参数即可。
+
+RBP debug方法
+idea远程链接8787端口，在AdminCenter里面的Premission Group，Premission Role等页面出发修改操作，根据network中请求的url中的ajax名字找到对应Controller的方法，在其中打断点。
+
+架构演变，客户的请求会逐级查询缓存，将找到的数据返回给客户
+老：app -> cache -> collector
+新：app -> cache -> DB -> collector
+缓存速度逐级下降。新架构中从collector中区数到DB是异步架构，创建job运行。
+
+linux后台运行方法
+cmd >log 2>&1 &
+父进程退出（比如关闭Terminal）会导致程序终止，所以使用nohup（记忆方法，不对hanghup信号进行响应）。
+nohup cmd >log 2>&1 & 或者 nohup cmd &
+
+-------------
+IDEA cheatsheet
+
+command + o 找calss
+command + back 删除整行
+command + Y 打开一个小窗口来查看类定义
+command + [, ] jump to previous/next view location
+显示class大纲 command + F12
+现实调用 option + F7
+查找symbol command + option + o
+查找class command + o
+打开Terminal option + F12
+切换vim编辑模式 ctrl + n
+-------------
+
+-------------
+Chrome cheatsheet
+
+command + option + arrows navigating SAP
+option + F7 查找引用
+-------------
+
+-------------
+Tmux cheatsheet
+
+在tmux下开启vi copy-paste模式，在.tmux.conf文件里加上
+set-window-option -g mode-keys vi
+
+来查看所有快捷键
+Command + : 进入命令模式，输入list-keys -T copy-mode-vi
+
+复制到系统剪切板
+在Terminal中输入tmux show-buffer | pbcopy
+-------------
+
+-------------
+Vim cheatsheet
+
+获取mark的行列值 let [s:linenumber, s:columnnumber] = getpos("'<")[1:2]
+获取数组倒数第一个  lines[-1]
+获取option的值  &optionname 如 &selection &filetype
+脚本中调用从stdin接受参数的命令 :call system('pbcopy', @")
+指定行中数字+1 4,$s/\d\+/\=submatch(0)+1/
+字符串拼接 使用点例如"a"."b"
+
+常用函数
+len(lines) getline(start, end) join(lines, "\n")
+-------------
+
+----------
+eclipse cheetsheet
+
+open shortcut list cmd + shift + l
+内容补全 Content Assist 默认 ctrl + space
+分配本地变量 cmd + 2 + l
+寻找文件 cmd + shift + t
+注释 cmd + /
+---------
+
+解决问题，qray compile失败，有一些jar包找不到。解决方法：选择一个远端有的version，修改ivy-version.properties。删除无用的jar包依赖，在ivy.xml中
+
+跑RBPClient，修改execute方法，然后使用命令行
+./gradlew runclientTomcat -Dscript_class="com.successfactors.rbp.util.RBPClient" -Dscript_args="-testGetTargetPopulationQueryByRules -c MHLOCAL"
+
+运行qray
+使用eclipse倒入项目，安装ivyde和testng插件
+resolve两个项目
+添加jvm参数 -javaagent:/Users/i519418/queryrepo/qray-libraries/lib/qraylib.jar
+编辑config.properties 指定服务器地址等信息
+
+修改服务端
+在tomcat-sfs/bin下的setenv.sh添加capillary依赖jar包地址
+JAVA_OPTS="${JAVA_OPTS} -javaagent:capillary-latest.jar -noverify"
+JAVA_OPTS="${JAVA_OPTS} -Dcom.sfv4.capillary.environment=local"
+JAVA_OPTS="${JAVA_OPTS} -Dcom.sfv4.capillary.enabled=true"
+
+以上操作做完以后就可以正常DemoneTest了
+
+解决tomcat无法asign端口的问题，原因是因为tomcat会绑定到莫名ip下的8080端口，解决方案是修改server.xml中的address为localhost，
+
+Test linke  账号 
+i335365/Success@123
+i519418/Yzj_1219
+
+qray 创建测试数据例子 PLT123480689RefreshAGForDelegate1WithAllDelegateUsers
+
+MCAP 公有云 减少cost
+IES 软件全家桶，后台做通
+UXR 优化界面体验
+RTB 手头的事情
+
+SRSD db activity
+COSR service request open zookeeper
+COSD Incidents
+IES 
+
+修改vmware端口映射 vmnetnat.conf 文件 在 imcomingtcp下添加映射关系
+在service中重启 vimware DHCP 和 vmware NAT 服务 【windows】
+
+获取一个抽象范型的参数类型
+getClass().getGenericSuperclass();
+(Class<T>) ((ParameterizedType) pt).getActualTypeArguments()[0]
+
+
+本地运行perge request会expire的问题
+需要注释DRMInApprovalState里的stateManager.pubInternalEvent(new DRMRequestEventImpl(EXPIRED));这一行
+
+Enable simplified rbp model process
+
+cacheconfigui.lab-rot.ondemand.com
+hasTargetPopulation
+editRole
+
+sf收集所有实现CheckToolExecutor注释的方法。
+查看EntityCollector类
+
+链接到zookeeper server（查看配置等操作）
+bin/zkCli.sh -server 127.0.0.1:2181 ls / ls /brokers ls /consumers
+
+docker查看容器ip
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+
+
+The request is submitted
+An ITdirect message will be created shortly in category SRIS_ACCSS_RA_SECID_SYNC.
+You can check on the ticket status using ITdirect
+
+解决问题：enable extend-by-n-days feature in local instance
+将data-model导出以后进行修改，添加dg-filter
+      <hris-element-ref refid="personalInfo" extend-by-n-days="30">
+          <hris-field-ref refid="first-name"/>
+      </hris-element-ref>
+修改EmployeeProfile extend-by-n-days页面需要增加两个权限：
+Employee Views和Employee Central Effective Dated Entities
+
+页面没有manage user的配置方法。在provision中disable employ center的选项
+
+Preparing a patch
+git format-patch master
+If you want to create just one file
+git format-patch master --stdout > new-feature.patch
+While it’s possible to use git diff and pipe the changes to a file, I think git format-patch is a better way because it includes the commit message describing the changes you made.
+# If you received the patch in a single patch file
+$ cat new-feature.patch | git am
+# If you received multiple patch files
+$ cat *.patch | git am
+
+qray导入测试用户
+ImportUserPreparation2
+
+
+申请instance
+https://a1s.sap.corp/SysLifeCycle/SystemLifeCycle/SFCustomer.aspx
+
+
+select * from QAAUTOCANDROT_PLTRBPHFHANA.SYS_CONFIG WHERE SYS_CONFIG_KEY like '%simplif%';
+SELECT * FROM SYS_CONFIG WHERE SYS_CONFIG_KEY = 'rbp.simplified.model.key';
+
+
+DELETE FROM SYS_CONFIG WHERE SYS_CONFIG_KEY = 'rbp.simplified.model.key';
+DROP TABLE rbp_permission;
+DROP TABLE rbp_permission_category_map;
+DROP TABLE rbp_category;
+
+
+  public Set<Long> getAllRefreshableDGIdsForUserList(String companySchema, Connection dbConnection,
+      List<String> userIds) {
+    if (userIds == null || userIds.isEmpty()) {
+      return null;
+    }
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    Set<Long> groupIds = new HashSet<>();
+
+    try {
+
+      InClauseUtil inClauseUtil = new InClauseUtil();
+      String sql = " select                                     "
+          + "  distinct g.users_group_id               "
+          + " from                                     "
+          + "  COMPANY_SCHEMA.users_group g,           "
+          + "  COMPANY_SCHEMA.usrgrp_map ug            "
+          + " where ug.users_sys_id in (               "
+          + inClauseUtil.createInQueryValueClause(companySchema, dbConnection, userIds) + " ) "
+          + " and g.users_group_type = 'dynamic'       " + " and g.users_group_subtype in (        "
+          + inClauseUtil.createInQueryValueClause(companySchema, dbConnection,
+              new ArrayList<>(GroupSubTypeEnum.refreshableTypes()))
+          + " )" + " and g.users_group_id = ug.users_group_id "
+          + "                                          "
+          + " UNION                                    "
+          + "                                          "
+          + " select                                   "
+          + "  distinct g.users_group_id               "
+          + " from                                     "
+          + "  COMPANY_SCHEMA.users_group g,           "
+          + "  COMPANY_SCHEMA.usrgrp_map ug            "
+          + " where ug.users_sys_id in (               "
+          + inClauseUtil.createInQueryValueClause(companySchema, dbConnection, userIds) + " ) "
+          + " and g.users_group_type = 'dynamic'       "
+          + " and g.users_group_subtype is null        "
+          + " and g.users_group_id = ug.users_group_id ";
+
+
+where is logger of getMemeberShip printed in the code?
+
+SRSD-61178
+
+rbp_hana_tomcat_roengon
+
+ffmpeg -i /path/to/input/file /path/to/output.mp4
+
+“com.docker.vmnetd” can’t be opened because Apple cannot check it for malicious software.
+
+“java” can’t be opened because Apple cannot check it for malicious software.
+
+sudo jamf recon
+
+vpn server shanghai02
+connectsha02.sap.com
+
+gradlew clean gradlew --stop gradlew redeploy --no-build-cache
+
+    e是external user
+    d是inactive external user
+    t是internal user
+    T 360 internal user
+    f inactive internal
+    F inactive 360 internal
+    v TBH to be hired
+    x purged
+
+Could you provide the detailed steps to reproduce this problem?
+
+Replication steps:
+
+PLT#-123464318
+In transaction refreshing is enabled
+
+ant -f sfv4client.xml runclient -Dscript_class="com.successfactors.platform.audit.client.AuditFmkClient" -Dscript_args="-syncG"
+ant -f sfv4client.xml runclient -Dscript_class="com.successfactors.platform.audit.client.AuditFmkClient" -Dscript_args="-syncWL"
+
+sonar token tom a2c447f7e8c72017b97869ffb6ff6cb20093cc69
+
+The issue is still occurring because of there are invalid users in DPCS table, need to run a script to change those users to JobAdmin.
+
+disable verification
+JAVA_OPTS=-noverify
+
+gradle smrfDepCheck
+gradle jspCompile
+
+Does au-auth belong to platform layer? And could you please list which class is referenced in au-auth?
+
+mac ip
+ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+10.58.221.140
+
+Performance Team
+Ge, Kalvin
+Alex
+http://10.58.125.26:8181/
+jenkins/jenkins
+
+Archive&Print output option
+1. in provision company setting check enable send to server option
+2. in provision Send to Server Report Transfer Settings, input server information
+3. in provisin PGP manager, generate a key and export it then import it back to the system.
+4. after 1-3 steps, output option section should show up on the create archive document page.
+
+Generate pgp key
+https://cerb.ai/guides/mail/gpg-setup-on-mac/#generating-gpg-keys
+
+SPRING_PROFILES_ACTIVE=dev-h2 ./gradlew bootRun
+
+java -jar myapp.jar -Dagentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+
+gradle bootRun -Dagentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+
+local cache service
+docker run --name local-cache-env --rm -p 8081:8080 -p 2181:2181 -p 2182:2182 -p 2183:2183 -p 7001:7001 -p 7002:7002 -p 7003:7003 -p 7004:7004 -p 7005:7005 -p 7006:7006 -p 7007:7007 -p 7008:7008 -p 7009:7009 -p 27001:27001 -p 27002:27002 -p 27003:27003 -d docker-registry.csg.corp/local_env/local-cache-env:latest
+
+./gradlew applicationTest -DignoreSafDependencyCheck=true -Dheadless=true -DapplicationTestProfile=authz-service-dc25 -Dtags='@authz-service-dc25'
+
+enable recurting internel and recurting external in dpcs type
+insert into qacandrot_pltzoulhana1.sys_config(sys_config_key, sys_config_type) values ('internal_dpcs2', 'recruiting_type');
+insert into qacandrot_pltzoulhana1.sys_config(sys_config_key, sys_config_type) values ('external_dpcs2', 'recruiting_type');
+
+org.gradle.java.home=/Library/Java/JavaVirtualMachines/sapmachine-jdk-11.0.10.jdk/Contents/Home/
+
+[4:06 PM] Hu, Kurt
+
+keytool -keystore $JAVA_HOME/jre/lib/security/cacerts -alias SAPNetCA_G2 -storepass changeit -import -file SAPNetCA_G2.crt
+需要把证书安装到jdk里面去
+$JAVA_HOME/jre/lib/security/cacerts 替换成本地jdk路径
+
+DB problems
+too many ? exceed 32767
+function index lower(v) lower(trim(v)) RCM-23562
+inclause batch execute
+
+http://localhost:8080/acme?fbacme_o=admin&pess_old_admin=true&ap_param_action=recruit_candidate_export&_s.crb=eP4RXGoW5ssSe1UvnXrQZUi9P7LL%252frVON%252bHSDtm5ixU%253d&
+http://localhost:8080/acme?fbacme_o=admin&pess_old_admin=true&ap_param_action=sys_companydictionary&_s.crb=eP4RXGoW5ssSe1UvnXrQZUi9P7LL%252frVON%252bHSDtm5ixU%253d&
+http://localhost:8080/acme?fbacme_o=analytics&&fb_reportstreedestnew=7i8&fb_reportsreportIndex=10403&_s.crb=eP4RXGoW5ssSe1UvnXrQZUi9P7LL%252frVON%252bHSDtm5ixU%253d&
+
+PLAGOLDEN/adminb1/pwd
+
+group refresh
+rbpDisableRefreshAccessKey
+enableDGRefreshingKey
+public static void scheduleDGRefreshJob(ParamBean params, Object payloadObj)
+  throws ServiceApplicationException{
+
+  try {
+    SystemBean systemBean = ServiceCommandHandlerFactory
+        .getSCAHandler().execute(
+        new GetSysConfigV2(SystemBean.ENABLE_GROUP_REFRESHING_JOB_KEY,
+            SystemBean.ENABLE_GROUP_REFRESHING_JOB_TYPE, false));
+    if (systemBean != null) {
+      logger.info("Scheduled Job enabled, skip realtime refreshing.");
+      return;
+    }
+  } catch (ServiceApplicationException e) {
+    logger.error("Failed to get sys config", e);
+  }
+
+get client ip
+https://mkyong.com/java/how-to-get-client-ip-address-in-java/
+https://gist.github.com/nioe/11477264
+
+clean cache
+https://jira.successfactors.com/browse/PLA-28126
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-permission@35a4bafafa4f3eccf4d10326a95a75d5ec5edd0a/-/blob/idl-permission-service/src/main/java/com/successfactors/dynamicgroups/util/queryengine/impl/DGFieldsRegistry.java?L197
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-permission@35a4bafafa4f3eccf4d10326a95a75d5ec5edd0a/-/blob/idl-permission-service/src/main/java/com/successfactors/dynamicgroups/util/queryengine/impl/xml/DgFieldsFactory.java?L70
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-permission@35a4bafafa4f3eccf4d10326a95a75d5ec5edd0a/-/blob/idl-permission-service/src/main/java/com/successfactors/dynamicgroups/util/queryengine/impl/xml/DgFieldsFactory.java?L102
+https://github.wdf.sap.corp/bizx/au-employeecentral/blame/master/au-employeecentral-service/src/main/java/com/successfactors/rbp/app/collector/impl/HrisBaseFieldCollector.java#L309
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-employeecentralcore/-/blob/idl-employeecentralcore-service/src/main/java/com/successfactors/employeecentralcore/datamodel/delegate/EmployeeCentralDataModelDelegateImpl.java?L759:1-759:14
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-employeecentralcore/-/blob/idl-employeecentralcore-service/src/main/java/com/successfactors/employeecentralcore/datamodel/delegate/EmployeeCentralDataModelDelegateServiceImpl.java?L57&subtree=true
+
+JDBC batch
+https://confluence.successfactors.com/display/ENG/Batch+Processing+in+JDBC
+https://blog.jooq.org/the-performance-difference-between-sql-row-by-row-updating-batch-updating-and-bulk-updating/
+
+https://qacand.hcm.ondemand.com/xi/ajax/remoting/call/plaincall/rbpPermissionRoleControllerProxy.getPermGroupByRevNumber.dwr
+
+cd ~
+git clone https://github.wdf.sap.corp/I832513/Development.git
+cd Development/Node
+npm install
+~/Development/Node/cleanupSMRF.js
+
+https://github.wdf.sap.corp/bizx/au-permissionapp/pull/310
+
+TMP Table column based?
+
+Cockpit RBP repo: https://github.wdf.sap.corp/PlatformCockpit/cockpit-rbpconfig-service
+Cockpit sf-k8s repo: https://github.tools.sap/sf-k8s/pfs-cockpit-rbpconfig-dev-config
+Cockpit DC25 QACAND env:
+https://platformcockpit-qacand-svc.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/rbpconfig/refresh-framework/QACAND
+Cockpit DC25 QAAUTOCAND env:
+https://platformcockpit-qaautocand-svc.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/rbpconfig/refresh-framework/QAAUTOCAND
+Cockpit All DC Preview/Production env:
+https://confluence.successfactors.com/pages/viewpage.action?spaceKey=CST&title=Platform+CockPit+Production+Landscape
+Jenkins Build Job:
+https://appservice.devprod.only.sap/job/platformfoundations/job/Cockpit/job/cockpit-rbpconfig-service/job/master/
+Cockpit RBP CAM profile Apply:
+https://github.wdf.sap.corp/pages/PlatformCockpit/cockpit-docu/app-rbp-config.html
+Cockpit confluence page:
+https://confluence.successfactors.com/display/ENG/RBP+cockpit+service
+
+Cockpit deploy
+step 1. repease new config
+https://github.tools.sap/sf-k8s/pfs-cockpit-rbpconfig-dev-config/commits/master
+step 2. release to jenkins job
+https://github.tools.sap/sf-k8s/pfs-cockpit-rbpconfig-prod-config/commits/master/dc25/qacand
+https://jenkins.tools.hcm-eng.c.eu-de-2.cloud.sap/job/common/job/promote-kustomize-releases/
+step 3. click sync buttom on argocd
+https://argocd.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/applications/pfs-cockpit-rbpconfig-qacand-app?resource=&node=argoproj.io%2FApplication%2Fargocd%2Fpfs-cockpit-rbpconfig-qacand-app%2F0
+
+System Integrity Protection(SIP) restricts the root user account and limits the actions that the root user can perform on protected parts of the Mac operating system.
+/System
+/usr
+/bin
+/sbin
+/var
+Apps that are pre-installed with OS X
+
+???
+Chasis?
+Simplified RBP Model?
+idl-di?
+difference between CompletableFuture.runAsync and ExecutorService.submit?
+default method?
+???
+
+kafka partition
+Math.abs(Objects.hash(orderedKeys.toArray()) % numPartitions);
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-iris/-/blob/idl-iris-service/src/main/java/com/successfactors/iris/service/impl/kafka/SequentiallyOrderedKeyPartitioner.java?L18:30&subtree=true
