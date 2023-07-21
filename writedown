@@ -1,9 +1,8 @@
 source linenumber in dcd 46w
-
 source linenumber in dp  42w
 
-let g:UltiSnipsSnippetDirectories=["C:/Users/tom.yang/snips","C:/Users/tom.yang/snips/netissnips","bundle/vim-snippets/UltiSnips"]
-let g:airnote_path = expand('C:/Users/tom.yang/snips/note')
+let g:UltiSnipsSnippetDirectories=["C:/Users/XXX/snips","C:/Users/XXX/snips/netissnips","bundle/vim-snippets/UltiSnips"]
+let g:airnote_path = expand('C:/Users/XXX/snips/note')
 let g:pydoc_cmd = "C:/Python27/Lib/pydoc.py"
 
 java -agentlib:dpenigmaI  -jar dp-engine.jar -c ../config/default/ -m batch -i file -o btr
@@ -214,8 +213,7 @@ Open up a command line terminal and enter 'sudo fdisk -l'. This will list all th
 Next, run this command - 'sudo dd if=/dev/zero of=/dev/sdb bs=1M' - via the terminal, making sure to substitute '/dev/sdb/' with the target drive's correct device path. This method is known as 'zeroing', and wipes the drive by overwriting every byte of information with zeroes.
 There is some debate as to whether or not this is more secure than overwriting the drive with random bits of information, but it's usually quicker and is perfectly sufficient for protecting your data from the average buyer.
 
-[2019/8/12, 6:02:07 PM] Yu, Weijun: http://sapjvm.wdf.sap.corp:1080/downloads
-[2019/8/12, 6:27:23 PM] Yu, Weijun: /Library/Java/JavaVirtualMachines/sapjvm_8/Contents/Home
+/Library/Java/JavaVirtualMachines/sapjvm_8/Contents/Home
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/sapjvm_8/Contents/Home
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
@@ -364,10 +362,6 @@ JAVA_OPTS="${JAVA_OPTS} -Dcom.sfv4.capillary.enabled=true"
 以上操作做完以后就可以正常DemoneTest了
 
 解决tomcat无法asign端口的问题，原因是因为tomcat会绑定到莫名ip下的8080端口，解决方案是修改server.xml中的address为localhost，
-
-Test linke  账号 
-i335365/Success@123
-i519418/Yzj_1219
 
 qray 创建测试数据例子 PLT123480689RefreshAGForDelegate1WithAllDelegateUsers
 
@@ -540,6 +534,7 @@ Does au-auth belong to platform layer? And could you please list which class is 
 
 mac ip
 ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+ipconfig getifaddr en0
 10.58.221.140
 
 Performance Team
@@ -645,23 +640,42 @@ Cockpit DC25 QACAND env:
 https://platformcockpit-qacand-svc.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/rbpconfig/refresh-framework/QACAND
 Cockpit DC25 QAAUTOCAND env:
 https://platformcockpit-qaautocand-svc.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/rbpconfig/refresh-framework/QAAUTOCAND
+Cockpit cache service
+https://platformcockpit-qaautocand-svc.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/cacheprovisioning/cache-config/QAAUTOCAND
 Cockpit All DC Preview/Production env:
 https://confluence.successfactors.com/pages/viewpage.action?spaceKey=CST&title=Platform+CockPit+Production+Landscape
 Jenkins Build Job:
-https://appservice.devprod.only.sap/job/platformfoundations/job/Cockpit/job/cockpit-rbpconfig-service/job/master/
+https://jenkins.tools.hcm-eng.c.eu-de-2.cloud.sap/job/platformfoundations/job/Platform_Cockpit/job/cockpit-rbpconfig-service/job/master/86/consoleFull
 Cockpit RBP CAM profile Apply:
 https://github.wdf.sap.corp/pages/PlatformCockpit/cockpit-docu/app-rbp-config.html
 Cockpit confluence page:
 https://confluence.successfactors.com/display/ENG/RBP+cockpit+service
-
 Cockpit deploy
-step 1. repease new config
+step 1. release new config
 https://github.tools.sap/sf-k8s/pfs-cockpit-rbpconfig-dev-config/commits/master
+check jenkins job(this job will publish tag to cockpit dev repo
+https://jenkins.tools.hcm-eng.c.eu-de-2.cloud.sap/job/platformfoundations/job/Platform_Cockpit/job/cockpit-rbpconfig-service/job/master/
 step 2. release to jenkins job
 https://github.tools.sap/sf-k8s/pfs-cockpit-rbpconfig-prod-config/commits/master/dc25/qacand
-https://jenkins.tools.hcm-eng.c.eu-de-2.cloud.sap/job/common/job/promote-kustomize-releases/
+https://jenkins.tools.hcm-eng.c.eu-de-2.cloud.sap/job/common/job/AUTO-DEPLOYMENT-KUSTOMIZE-QA
 step 3. click sync buttom on argocd
 https://argocd.sc25k8scl01.cksdc25.c.eu-de-1.cloud.sap/applications/pfs-cockpit-rbpconfig-qacand-app?resource=&node=argoproj.io%2FApplication%2Fargocd%2Fpfs-cockpit-rbpconfig-qacand-app%2F0
+Cockpit Quality review
+https://confluence.successfactors.com/display/CST/Cockpit+Quality+Review+MS2304
+
+Cockpit dc01 remote access IPAddress
+https://confluence.successfactors.com/pages/viewpage.action?spaceKey=SSCD&title=DC01+Site+Details
+Argocd dc01 url
+https://argocd.dc01qaapp01-apps.live.hcm.ondemand.com/applications/pfs-cockpit-rbpconfig-qa-app?resource=
+Service url
+https://platformcockpit-svc.qa.dc01k8s-apps.sf.priv/rbpconfig/refresh-framework/QA
+
+Cockpit production access
+https://confluence.successfactors.com/display/CST/Platform+CockPit+Production+Landscape
+
+Change Cockpit prod config
+aluri.prabhakar@sap.com
+
 
 System Integrity Protection(SIP) restricts the root user account and limits the actions that the root user can perform on protected parts of the Mac operating system.
 /System
@@ -677,8 +691,518 @@ Simplified RBP Model?
 idl-di?
 difference between CompletableFuture.runAsync and ExecutorService.submit?
 default method?
+DBConnection Scope SCA obtains dbConnection though VirtualConnectionProxy for every request.
+in-memory zkserver
+what sap zkclient done
+java can a function interface have multi method
+how parameters in ThreadPoolFactory works
+caffine, cache grava
+how spring handl @Named and @Inject
+spring transaction rollback kafka
 ???
 
 kafka partition
 Math.abs(Objects.hash(orderedKeys.toArray()) % numPartitions);
 https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/idl-iris/-/blob/idl-iris-service/src/main/java/com/successfactors/iris/service/impl/kafka/SequentiallyOrderedKeyPartitioner.java?L18:30&subtree=true
+
+zkclient
+create /RefreshFramework/RF_CONFIG/BIZX/ENABLE_RBP_SECURITY_NOTIFICATION
+get /RefreshFramework/RF_CONFIG/BIZX/ENABLE_RBP_SECURITY_NOTIFICATION
+set /RefreshFramework/RF_CONFIG/BIZX/ENABLE_RBP_SECURITY_NOTIFICATION {"configKey":"ENABLE_RBP_SECURITY_NOTIFICATION","defaultValue":"ENABLED"}
+
+SCA
+ServiceCommandEngine
+ServiceCommandProcessorSpring
+JtaTransactionManager
+
+Upgrade node
+npm cache clean -f
+npm install -g -n
+sudo n stable
+
+how to add permission
+
+port usage
+sudo lsof -PiTCP -sTCP:LISTEN | grep 9092
+npx kill-port 3000 8080 8081
+
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092 --command-config config/adminclient-configs.conf
+
+SAP VAS
+SAP JAM OPEN SOURCE Shi Kathy Fenix Huang
+
+20:11:14,141 INFO  [SFSpringAnnotationRegisterListener] register class com.successfactors.security.service.impl.RoleEventServiceImpl
+
+PermissionGroupRefreshPostAction
+BizxResilienceClientFactory.java
+GENERIC_OBJECT_TYPE_MAP maintain id and dataModel
+GENERIC_OBJEC_T
+https://sap-my.sharepoint.com/:v:/p/rita_liu02/EXs8GsSbHG1KhYdwlmCbcJcBX_ZWjUmAXZD3TUQYMUpweg
+
+SCIM System for Cross-domain Identity Management
+RFC requst for comments
+IAM Identity Access Management
+IAS SAP Cloud Platform Identity Authentication service (IAS)
+IAG The SAP Cloud Identity Access Governance (IAG) 
+IPS SAP Cloud Platform Identity Provisioning Service (IPS)
+
+HXM Suite Site (11) and Environments (22):
+DC52 Singapore - 2 Environments (Preview + Production)
+DC57 Amsterdam - 3 Environments (Preview + Production + SalesDemo)
+DC58 EDR Amsterdam - 1 Environment (DR Production)
+DC66 Sydney - 2 Environments (Preview + Production)
+DC67 EDR Melbourne - 1 Environment (DR Production)
+DC30 Shanghai - 2 Environments (Preview + Production)
+DC70 Ashburn - 3 Environments (Preview + Production + SalesDemo)
+DC71 EDR Ashburn - 1 Environment (DR Production)
+DC33 Frankfurt - 3 Environments (Preview + Production + Bosch)
+DC34 EDR ROT – 1 Environment (DR Production)
+DC68 Chandler - 3 Environments (Preview + Production + Enablement)
+
+Payroll Site (8) and Environments (14) :
+DC55 Frankfurt - 2 Environments (Dev/QA + Production)
+DC64 US East 2 - 2 Environments (Dev/QA + Production)
+DC65 US West 2 - 1 Environment (DR Production)
+DC66 Sydney - 2 Environments (Dev/QA + Production)
+DC67 DR Melbourne - 1 Environment (DR Production)
+DC22 Dubai - 2 Environments (Dev/QA + Production)
+DC33 Frankfurt - 2 Environments (Dev/QA + Production)
+DC23 Riyadh - 2 Environments (Dev/QA + Production)
+
+CAM
+https://spc.ondemand.com/sap/bc/webdynpro/a1sspc/cam_wd_central?item=requested#
+
+OUR BEHAVIORS
+
+Grace Yu
+
+SAP Region
+https://directbilling.sap.com/bd/public/registration/BD_Country_Region.htm
+
+new MockUp<SFMessageBundle>() {
+    @Mock
+    public void initMessageBundle(IMessageBundleContext mbc) {
+    }
+};
+
+2020.4.14
+
+[16:40] Guan, Fannie
+https://github.tools.sap/CentralEngineering/TechnologyGuidelines/tree/latest/tg16/docs
+GitHub
+GitHub is where people build software. More than 65 million people use GitHub to discover, fork, and contribute to over 200 million projects.
+
+[16:40] Guan, Fannie
+tg16_r1_how_to_SCIM_overview.md
+GitHub
+GitHub is where people build software. More than 65 million people use GitHub to discover, fork, and contribute to over 200 million projects.
+
+[16:40] Guan, Fannie
+https://github.tools.sap/CentralEngineering/TechnologyGuidelines/tree/latest/tg16
+GitHub
+GitHub is where people build software. More than 65 million people use GitHub to discover, fork, and contribute to over 200 million projects.
+
+[16:48] Hu, Yijin
+https://confluence.successfactors.com/display/AAR/SCIM+Group+Endpoint+for+IAS+Migration
+
+
+
+Gathering requirements about permission migration SCA.
+Figure out a way to retire old permission.
+
+Permission migration SCA has a lots of limits like only support permission with fixed type and does not support retire old permission also. And we have some requirements come from other teams such as retire old permissions. So we need to do some enhancment for permission migration SCA.
+
+
+{
+    "schemas": ["urn:ietf:params:scim:api:messages:2.0:ListResponse"],
+    "totalResults": 2,
+    "itemsPerPage": 10,
+    "startIndex": 1,
+    "Resources": [
+    {
+        "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
+        "id": "26118915-6090-4610-87e4-49d8ca9f808d",
+        "displayName": "SAP_PROJECT_MANAGER_US",
+        "$ref": "../Groups/uuid",
+        "meta": { … }
+    }]
+}
+
+{
+    "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"],
+    "id": "26118915-6090-4610-87e4-49d8ca9f808d",
+    "displayName": "SAP_PROJECT_MANAGER_US",
+    # A list of Users and other Groups of the Group:
+    "members": [
+    {
+        "value": "2819c223-7f76-453a-919d-413861904646",
+        "$ref": "../Users/2819c223-7f76-453a-919d-413861904646",
+        "display": "James Skelton",
+        "type": "User"
+    }],
+    "meta": { … }
+}
+
+SELECT ua.ACCOUNT_UUID , eei.PERSON_ID , ua.ACCOUNT_ID , ug.USERS_GROUP_ID , ug.USERS_GROUP_NAME , ug.USERS_GROUP_LAST_MOD , ug.USERS_GROUP_STATIC
+FROM USER_ACCOUNT ua , EMP_EMPLOYMENT_INFO eei , USERS_GROUP ug , USRGRP_MAP um
+WHERE ug.USERS_GROUP_ID = um.USERS_GROUP_ID AND um.USERS_SYS_ID = eei.USERS_SYS_ID AND eei.PERSON_ID = ua.PERSON_ID
+AND ug.USERS_GROUP_SUBTYPE = 'permission'
+AND ug.USERS_GROUP_USER_TYPE != 'LMS'
+AND ug.USERS_GROUP_NAME NOT IN ('$$EVERYONE_ONB$$', '$$EVERYONE$$', '$$EVERYONE_LMS$$')
+AND ug.USERS_GROUP_SUB_DOMAIN IS NULL
+
+SELECT ua.ACCOUNT_UUID , eei.PERSON_ID , ua.ACCOUNT_ID , ug.USERS_GROUP_ID , ug.USERS_GROUP_NAME , ug.USERS_GROUP_LAST_MOD , ug.USERS_GROUP_STATIC FROM USER_ACCOUNT ua , EMP_EMPLOYMENT_INFO eei , USERS_GROUP ug , USRGRP_MAP um WHERE ug.USERS_GROUP_ID = um.USERS_GROUP_ID AND um.USERS_SYS_ID = eei.USERS_SYS_ID AND eei.PERSON_ID = ua.PERSON_ID AND ug.USERS_GROUP_SUBTYPE = 'permission' AND ug.USERS_GROUP_USER_TYPE != 'LMS' AND ug.USERS_GROUP_NAME NOT IN ('$$EVERYONE_ONB$$', '$$EVERYONE$$', '$$EVERYONE_LMS$$') AND ug.USERS_GROUP_SUB_DOMAIN IS NULL
+
+com.successfactors.security.event.RoleEventSubscriber
+
+Download bizx-docker-dev project:
+https://github.wdf.sap.corp/sfengservices/bizx-docker-dev
+
+Pull our image and start up kafka & zookeeper
+docker-compose up kafka zookeeper
+
+Start image
+docker-compose start/stop zookeeper kafka
+
+docker login sf-docker-stagin.docker....
+username: I-number
+password: API key
+
+docker stop bizx-docker-dev_kafka_1
+docker rmi sf-docker-staging.common.repositories.cloud.sap/bizx/kafka:2.13-2.8.0
+docker up -d kafka
+
+SELECT ua.ACCOUNT_UUID , eei.PERSON_ID , ua.ACCOUNT_ID , ug.USERS_GROUP_ID , ug.USERS_GROUP_NAME , ug.USERS_GROUP_LAST_MOD , ug.USERS_GROUP_STATIC
+FROM change_on_setup.USER_ACCOUNT ua , change_on_setup.EMP_EMPLOYMENT_INFO eei , change_on_setup.USERS_GROUP ug , change_on_setup.USRGRP_MAP um 
+WHERE ug.USERS_GROUP_ID = um.USERS_GROUP_ID AND um.USERS_SYS_ID = eei.USERS_SYS_ID AND eei.PERSON_ID = ua.PERSON_ID 
+AND ug.USERS_GROUP_SUBTYPE = ''permission'' 
+AND (ug.USERS_GROUP_USER_TYPE IS NULL OR ug.USERS_GROUP_USER_TYPE = ''ONB'') 
+AND ug.USERS_GROUP_NAME NOT IN (''$$EVERYONE_ONB$$'', ''$$EVERYONE$$'', ''$$EVERYONE_LMS$$'') 
+AND ug.USERS_GROUP_SUB_DOMAIN IS NULL
+
+
+account1 user1 group1
+account1 user2 group1
+
+account1 displayName1 group1
+account1 displayName1 group1
+
+check permission in db
+join permission, users_group, grpperm_map, usrgrp_map
+/usr/local/bin/dotnet/dotnet:/usr/local/bin/dotnet:/usr/local/share/dotnet/sdk/5.0.202:/usr/local/share/dotnet/sdk:
+
+(groupName eq "ttt" or (groupName eq "aaa" and groupName eq "ccc"))
+
+grammar generators
+https://stackoverflow.com/questions/32193036/resolving-logical-operations-and-or-looping-conditions-dynamically
+
+OraclePermissionDAO 424
+[16:51] Hu, Yijin
+attributes=members[startId='initial'&count='']
+
+[16:52] Hu, Yijin
+attributes=members[startId=initial&count=100]
+
+[16:52] Chang, Yi
+PAGE      = "startId=" （ID / "Initial") ["&count=" number] [SORTING]                        ; ID follows resource ID format
+
+[16:57] Hu, Yijin
+"members.nextId": "2d76a488-4856-496d-a283-b544b0511342",      "members.cnt":12000       #  member count of this group resouce
+
+DBA
+jenney jiang
+
+CREATE OR REPLACE VIEW V_USER_ACCOUNT_GROUPS AS (
+SELECT ua.ACCOUNT_UUID , eei.PERSON_ID , ua.ACCOUNT_ID , ug.USERS_GROUP_ID , ug.USERS_GROUP_NAME , ug.USERS_GROUP_LAST_MOD , ug.USERS_GROUP_STATIC , um.USERS_SYS_ID
+FROM USER_ACCOUNT ua , EMP_EMPLOYMENT_INFO eei , USERS_GROUP ug , USRGRP_MAP um
+WHERE ug.USERS_GROUP_ID = um.USERS_GROUP_ID AND um.USERS_SYS_ID = eei.USERS_SYS_ID AND eei.PERSON_ID = ua.PERSON_ID
+AND ug.USERS_GROUP_SUBTYPE = 'permission'
+AND (ug.USERS_GROUP_USER_TYPE IS NULL OR ug.USERS_GROUP_USER_TYPE = 'ONB')
+AND ug.USERS_GROUP_NAME NOT IN ('$$EVERYONE_ONB$$', '$$EVERYONE$$', '$$EVERYONE_LMS$$')
+AND ug.USERS_GROUP_SUB_DOMAIN IS NULL
+) WITH READ ONLY
+
+qacand query db
+DataBaseOperations改这个类，然后命令行， 
+./gradlew runtimeTest -Ptestng.xml.name=testng-sql.xml -P__profile=rbp_eu_hana_tomcat_roengon2 -Dorg.gradle.jvmargs=-Xmx4g
+profile 这里用的qacand
+你的jvm如果默认是11 ， 你可以将 plt-rbp 切到分支 feature/jvm11 上操作，用11 编译运行
+
+Manage Identity Account and Group
+
+idl-dbresource
+DS, Vinay
+
+PERFVERIHANA_PERFRBPPEPSI
+USERS_GROUP 5474
+USERS_SYSINFO 257477
+USERS_GROUP_AUD 5044
+
+DBVIEW select sql 170ms
+create date 15ms
+Member pagination 1.3s
+
+
+How to config DIT in idea
+1.cmd + , open the perference, Gradle, select test using Idea
+2.in run menue, test cofiguration, config TestNG templates, add jvm parameters:
+-ea
+-Dsf.sfv4.databaseType=hana
+-Dunitils.configuration.localFileName=dit-hana-local.properties
+-DtestngMaxParallelForks=0
+-Djdk.attach.allowAttachSelf=true
+--add-reads=java.base=java.desktop
+--add-reads=java.xml=java.desktop
+--add-reads=java.management=java.desktop
+--add-reads=java.sql=java.desktop
+--add-reads=java.naming=java.desktop
+-Djava.locale.providers=COMPAT,SPI
+
+https://qaautocand.hcm.ondemand.com/sf/authz#/viewRole?roleId=33994&tab=permission
+https://qaautocand.hcm.ondemand.com/acme?_s.crb=igoRMPOQFhDOhqGOR2ZBABERggYb%252fVdgTwj1xsmK%252fAk%253d&bplte_company=H2htPLTRBPMD1&fbacme_o=admin&ap_param_action=ap_manage_rbp_role_detail&pess_old_admin=true&permissionRoleId=33989&permissionRoleUserType=
+
+http://localhost:8080/sf/authz#/viewRole?roleId=422&tab=permission
+
+master job related db table
+recent?request/queued/waiting/
+
+ssh 到dev server
+cd ~/bizx-docker-dev
+docker-compose restart hana2
+
+Fortify
+auth Zhong, Francis
+problem Zhang, Orrin
+
+Fortify help:
+https://github.wdf.sap.corp/pages/Security-Testing/doc/fortify-doc/access/#user-registration-via-self-service
+Fortify local scan
+https://github.wdf.sap.corp/pages/Security-Testing/doc/fortify-doc/producing/#scanning-locally
+https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2020
+
+BTP tanent
+Link to IPS
+Identity Provisioning (ondemand.com)
+
+Sub-account cockpit
+sapipsdev > SFSF > Overview - SAP BTP Cockpit (ondemand.com)
+
+microservice token
+GET /public/authz/rest/v1/token HTTP/1.1
+Host: plt-authz-svc-demo.microservices.hcm-eng.c.eu-de-2.cloud.sap
+Content-Type: application/json
+Content-Length: 164
+
+
+
+{
+    "userId": "admin",
+    "companyId": "PLTRBPPEPSIH2",
+    "tenantSchema": "PERFVERIHANA_PLTRBPPEPSIH2",
+    "env": "PERFVERIHANA",
+    "needX509Token": false
+}
+
+How to user IPS connector
+1. check configuration in source system and target system
+https://help.sap.com/docs/IDENTITY_PROVISIONING/9b86e4081f744be1a7c4dd915cfbf370/f217bd39c17d47cdb4f89ed19cb2c701.html?state=DRAFT
+make copy configrations from above link to the transimtion text in IPS Porvisioning (section: source system, target system)
+make sure proerties is correct, eg. user in format like XXX@Company
+click RSYNC job
+check job logs
+2. check Group details in IAS system.
+
+Config IPS proxy system
+1.check guide
+https://help.sap.com/docs/IDENTITY_PROVISIONING/9b86e4081f744be1a7c4dd915cfbf370/d45425fa2981496dac4e2918edfeac56.html?state=DRAFT
+2.config OAuth in BTP cockpit
+https://account.int.sap.eu2.hana.ondemand.com/neo/#/globalaccount/599e01c4-79c8-45ca-8208-5738110513b7/neosubaccount/689d77bd-8a9f-4d5f-b0f7-e1196fedb716/oauth
+3.get odata token by based64 encoded basic 875526e6-580d-3c28-867d-3a743310af77:12345678 which is ODc1NTI2ZTYtNTgwZC0zYzI4LTg2N2QtM2E3NDMzMTBhZjc3OjEyMzQ1Njc4
+https://oauthasservices-tuc9zbvu9i.int.sap.eu2.hana.ondemand.com/oauth2/api/v1/token?grant_type=client_credentials
+4.query use the OAuth token
+https://ipsproxyzdwbldsll2-tuc9zbvu9i.int.sap.eu2.hana.ondemand.com/ipsproxy/api/v1/scim/90f1c083-d383-41ac-9dad-2c6222a59b91/Groups/2439
+https://ipsproxyzdwbldsll2-tuc9zbvu9i.int.sap.eu2.hana.ondemand.com/ipsproxy/api/v1/scim/<system_id>/Users(Groups)
+
+SELECT * FROM V_USER_ACCOUNT_GROUPS WHERE ACCOUNT_UUID  IN (SELECT ACCOUNT_UUID  FROM USER_ACCOUNT WHERE BITAND(extension_status, 2) != 0)
+
+
+select users_sys_username from QACAND_PLTUSERPROV.usrgrp_map m, QACAND_PLTUSERPROV.users_sysinfo u where users_group_id = 4999 and m.users_sys_id = u.users_sys_id and users_sys_valid in ('e','t','T')
+
+select * from QACAND_PLTUSERPROV.usrgrp_map where USERS_GROUP_ID = 4999 and users_sys_id in (select users_sys_id from QACAND_PLTUSERPROV.USERS_SYSINFO where users_sys_username in (select USERNAME from QACAND_PLTUSERPROV.USER_ACCOUNT where BITAND(extension_status, 2) != 0))
+
+Defects filter
+https://jira.successfactors.com/issues/?filter=134812
+https://jira.successfactors.com/browse/PLA-36068?filter=109708
+
+Saved working directory and index state WIP on feature/scimconfig: 570ba289 update ut
+
+get service token
+https://plt-authz-svc-demo-remote.microservices.hcm-eng.c.eu-de-2.cloud.sap/public/authz/rest/v1/token
+{
+    "userId": "byin",
+    "companyId": "RBPEUAS",
+    "tenantSchema": "QACAND_RBPEUAS",
+    "env": "qacand",
+    "needX509Token": true
+}
+
+service env
+service dev latest
+https://plt-authz-svc-sit.microservices.hcm-eng.c.eu-de-2.cloud.sap/
+https://plt-authz-svc.microservices.hcm-eng.c.eu-de-2.cloud.sap/
+release job
+https://jenkins.tools.hcm-eng.c.eu-de-2.cloud.sap/job/common/job/RELEASE-KUSTOMIZE-QA/build?delay=0sec
+tags
+https://github.tools.sap/sf-k8s/pfs-authorization-dev-config/tags
+argocd logs
+https://argocd.tools.hcm-eng.c.eu-de-2.cloud.sap/applications/pfs-authorization-dev-app?resource=&node=apps%2FReplicaSet%2Fauthorization%2Fplt-authz-svc-f856ff5c6%2F0&tab=logs
+bizx url
+https://engms.hcm-eng.c.eu-de-2.cloud.sap/login?_s.crb=abIaq5N45zdjZ2qV0Tl9BtpMcOy2yYXMwKNaIg4y98o%253d#/companyEntry
+
+TECH USER
+https://github.wdf.sap.corp/pages/mcap-api-service/platform-release/#/_reference-guide/platform-lightweight-odata-starter/latest/
+https://confluence.successfactors.com/display/PAT/Technical+User+Usage+Details
+https://confluence.successfactors.com/display/ENG/Technical+User
+https://confluence.successfactors.com/display/~I077806/Require+Technical+User+Workflow
+https://confluence.successfactors.com/display/ENG/RBP+Technical+User+Design+Spec
+
+tech user only in user_account, is not in users_sysinfo table
+
+urn:ietf:params:scim:schemas:extension:sap.workforce:2.0:User
+
+au-actionsearch action-search-template
+
+RBPModel KT
+https://confluence.successfactors.com/display/ENG/Simplified+RBP+Model
+https://confluence.successfactors.com/display/ENG/Select+Permission
+RBPCacheUtil
+https://confluence.successfactors.com/display/ENG/Role+Based+Permission+DS+-+Integration+Framework
+
+https://code.saf-service.sap.corp/github.wdf.sap.corp/bizx/au-permissionapp/-/blob/au-permissionapp-service/src/main/java/com/successfactors/rbp/service/impl/UpdatePermissionRoleImpl.java?L702:19#tab=references
+
+    ROLE_ADD(1,"ROLE_ADD"),
+    ROLE_UPDATE(2,"ROLE_UPDATE"),
+    GROUP_ADD(3,"GROUP_ADD"),
+    GROUP_UPDATE(4,"GROUP_UPDATE"),
+    RULE_UPDATE(5, "RULE_UPDATE"),
+    GROUP_UNLOCK(6,"GROUP_UNLOCK");
+
+https://qaautocand-apigee-int.hcm.ondemand.com/rest/iam/scim/v2/Groups?filter=urn:ietf:params:scim:schemas:extension:sap:2.0:Group:type eq "deepLinkActivationPermission"
+
+RefreshMasterJob master job states
+
+disallow-capabilities-strict
+disallow-default-namespace
+imagepullpolicy-always
+require-run-as-nonroot
+require-ro-rootfs
+restrict-seccomp-strict
+validate-userid-groupid-fsgroup
+
+embeddedAnalyticsAccessPermission
+
+QRRAY run CLI and idea config
+./gradlew runtimeTest -Ptestng.xml.name=testng-sql.xml -P__profile=rbp_hana2_qaautocand_md1 -Dorg.gradle.jvmargs=-Xmx4g
+-javaagent:/Users/i519418/.gradle/caches/modules-2/files-2.1/io.github.lab515/qray/1.0.7/8e82430c48e978a913ca192310caf6fd551c7b72/qray-1.0.7.jar -ea -D__profile=rbp_hana2_qaautocand_md1
+
+query git history
+git log --author=rafael.peng@sap.com --pretty=format:"%h" | while read commit_hash; do echo "==== $commit_hash ===="; git show $commit_hash; done > log.txt
+
+https://perfpoint.c.eu-de-2.cloud.sap/perflog/parser?gist=4084
+before hint:
+    https://perfpoint.c.eu-de-2.cloud.sap/perflog/parser?gist=4085
+        com.successfactors.dynamicgroups.dao.impl.oracle.OracleGroupDAO.selectGroupMembersToGroup	6656852
+after hint:
+    https://perfpoint.c.eu-de-2.cloud.sap/perflog/parser?gist=4092
+        com.successfactors.dynamicgroups.dao.impl.oracle.OracleGroupDAO.selectGroupMembersToGroup	6628756 1%up
+    https://perfpoint.c.eu-de-2.cloud.sap/perflog/parser?gist=4093
+        com.successfactors.dynamicgroups.dao.impl.oracle.OracleGroupDAO.selectGroupMembersToGroup	1238721 82%up
+
+Filter Permission Groups to be Returned by Workforce SCIM API
+
+Add-hoc qacand deploy
+1. login to https://sap.service-now.com/navpage.do 
+2. search CreateNew in left bar
+3. select create normal
+4. input info, example CHG2529778
+
+  public List<List<Object>> getStaticMemberList(String companySchema,
+      Connection dbConnection,
+      Set<DGField<?>> previewFields,
+      DGFields dgFields,
+      DGField orderbyField,
+      boolean orderDir,
+      int pageStart,
+      int pageSize,
+      long groupId,
+      boolean activeUserOnly)
+
+  public List<List<Object>> getStaticMemberList(String companySchema,
+      Connection dbConnection,
+      GroupRuleBean groupRuleBean,
+      DGFields dgFields,
+      DGField orderbyField,
+      boolean orderDir,
+      int pageStart,
+      int pageSize, int rowSize, long groupId)          
+      
+  public List<List<Object>> getMemberList(String companySchema,
+      Connection dbConnection,
+      GroupRuleBean groupRuleBean,
+      DGFields dgFields,
+      DGField orderbyField,
+      boolean orderDir,
+      int pageStart,
+      int pageSize, int rowSize, SQLWithBindVars sqlWithBindVars)
+
+instance clone
+QA:
+https://confluence.successfactors.com/display/RMDA/Instance+Clone%28Refresh+Requests%29+as+a+self+service+job/
+Other env:
+https://itsm.services.sap/srm?id=sc_cat_item&sys_id=720ec6b81b972410d9c921fbbb4bcb57&sysparm_category=cbba42e01b936010614e744c8b4bcba7
+
+TimelyJob sysconfig
+INSERT INTO SYS_CONFIG (SYS_CONFIG_KEY, SYS_CONFIG_TYPE) VALUES ('enableDGRefreshingKey', 'enableDGRefreshingType');
+INSERT INTO SYS_CONFIG (SYS_CONFIG_KEY, SYS_CONFIG_TYPE) VALUES ('rbpDisableRefreshAccessKey', 'rbpDisableRefreshAccessType');
+SELECT * from SYS_CONFIG WHERE SYS_CONFIG_KEY = 'enableDGRefreshingKey' and SYS_CONFIG_TYPE = 'enableDGRefreshingType'
+SELECT * from SYS_CONFIG WHERE SYS_CONFIG_KEY = 'rbpDisableRefreshAccessKey' and SYS_CONFIG_TYPE = 'rbpDisableRefreshAccessType'
+
+Hi Everyone，2311 的New Xray case请务必加到这个Test Set里面 https://jira.successfactors.com/browse/PLA-40693
+
+qray profile
+rbp_hana_patch_preview
+rbp_hana_perfshare
+rbp_hana2_qacand
+rbp_hana2_qaautocand_md1
+
+configuration center 开发文档
+https://confluence.successfactors.com/display/ENG/Configuration+Center%3A+Framework+Adoption+-+Developer+Guide
+
+1.0.0-master-d425fba-103
+
+DB Upgrade https://confluence.successfactors.com/display/ENG/Developer+Guidance%3A+Change+BizX+Global+Schema+DB+Objects
+gw runclient -Dscript_class="com.successfactors.upgrade.clients.DbGlobalUpgradeClient"
+
+feature/PLA-40464
+RBP Mimosa Jobs：(PLA-38793)
+1. Suite: PLA_RBP_ADF_COMMON
+    Tags: @RBPCommon
+    Tags: @GroupRuleRefresh
+2. Suite: PLA_RBP_ADF_ODATA
+    Tags: @ODATAAPI
+3. Suite: PLA_RBP_LatestRBP
+    Tags: @NextGenE2E
+    Tags: @NextGen
+4. Suite: PLA-RBP-SCIM-Group
+    Tags: @SCIM
+
+BTP
+developers.sap.com/tutorial-navigator.html
+
+慈城服务区
+
+RefreshAll.*Impl
+jobCounts in RefreshMasterJob
+SelfHealingJob
+
+
